@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIVE STORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <!-- Custom Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- StyleSheet-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=IM+Fell+DW+Pica&family=Tilt+Prism&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./View/assets/stylesheet/customCss.css"
+    />
+
+    <!-- SweetAlert-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <!-- JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!--Custom Js-->
+    <!--<script src="./View/assets/js/main.js"></script>-->
+    <script src="./View/assets/js/Auth/register.js"></script>
+    <script src="./View/assets/js/Auth/forgotPass.js"></script>
+    <script src="./View/assets/js/Auth/login.js"></script>
+  </head>
+
+  <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
+    <!-- Container  -->
+    <main class="h-screen w-screen bg-neutral-800" style="display: flex">
+      <!-- Sidenav -->
+      <nav
+        class="flex flex-col justify-between items-center bg-neutral-900 w-16 h-full p-2 pb-3"
+      >
+        <div class="w-full">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/10490/10490234.png"
+            alt=""
+          />
+        </div>
+        <footer
+          class="w-full justify-center flex cursor-pointer"
+          onclick="showLoginModal()"
+        >
+          <i
+            class="fa-regular fa-circle-user text-white hover:text-slate-300"
+            style="font-size: 34px"
+          ></i>
+        </footer>
+      </nav>
+      <!-- Main Section -->
+      <section class="w-full">
+        <header class="flex justify-between w-11/12 px-4 py-2 fixed">
+          <label
+            for=""
+            style="font-family: 'Tilt Prism', cursive"
+            class="text-white text-2xl"
+            >LIVE STORE</label
+          >
+        </header>
+        <main class="w-full mt-20">
+          <!-- App Intro-->
+          <div class="Top flex">
+            <div class=" flex justify-center flex-col items-center" style="width:200px">
+              <img
+                class="w-24 rounded-xl"
+                src="https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png"
+                alt=""
+              />
+              <div>
+                <div class="flex items-center mt-2 mb-5">
+                            <svg
+                              class="w-4 h-4 text-yellow-300 mr-1"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 22 20"
+                            >
+                              <path
+                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                              />
+                            </svg>
+                            <svg
+                              class="w-4 h-4 text-yellow-300 mr-1"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 22 20"
+                            >
+                              <path
+                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                              />
+                            </svg>
+                            <svg
+                              class="w-4 h-4 text-yellow-300 mr-1"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 22 20"
+                            >
+                              <path
+                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                              />
+                            </svg>
+                            <svg
+                              class="w-4 h-4 text-yellow-300 mr-1"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 22 20"
+                            >
+                              <path
+                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                              />
+                            </svg>
+                            <svg
+                              class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 22 20"
+                            >
+                              <path
+                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                              />
+                            </svg>                            
+              </div>
+              <div>
+                <button type="button" class="w-20 h-12 rounded-xl bg-blue-600">
+                    <i class="fa-solid fa-circle-play text-2xl text-white"></i>
+                </button>            
+                <button type="button" class="w-20 h-12 rounded-xl bg-green-500">
+                <i class="fa-solid fa-circle-down text-2xl text-white"></i>
+                </button>            
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+    </main>
+  </body>
+</html>

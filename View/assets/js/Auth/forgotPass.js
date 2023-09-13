@@ -2,7 +2,7 @@ const ForgotPass = () => {
     Swal.fire({
         html: `
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <div class="w-full h-full" id="personalInfo">
+          <div class="w-full h-full" id="personalInfo">
             <h1
               class="mb-10 text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white text-center"
               style="letter-spacing: 2px"

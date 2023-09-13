@@ -2,7 +2,7 @@ const showLoginModal = () => {
         currStep = 1;
         Swal.fire({
           html: `
-                        <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:450px">
+                <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:450px">
                       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                           <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white" style="letter-spacing:1px">
                               Sign in to your account
@@ -34,7 +34,7 @@ const showLoginModal = () => {
                           </form>
                       </div>
                   </div>
-                            `,
+                `,
           padding: 0,
           width: "450px",
           showConfirmButton: false,
