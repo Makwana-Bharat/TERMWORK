@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Sep 17, 2023 at 01:54 PM
+-- Generation Time: Sep 17, 2023 at 02:22 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -103,25 +103,52 @@ ALTER TABLE `category`
 -- Indexes for table `project`
 --
 ALTER TABLE `project`
-  ADD PRIMARY KEY (`PID`);
+  ADD PRIMARY KEY (`PID`),
+  ADD KEY `UID` (`UID`);
 
 --
 -- Indexes for table `project_meta`
 --
 ALTER TABLE `project_meta`
-  ADD PRIMARY KEY (`MID`);
+  ADD PRIMARY KEY (`MID`),
+  ADD KEY `PID` (`PID`);
 
 --
 -- Indexes for table `project_tag`
 --
 ALTER TABLE `project_tag`
-  ADD PRIMARY KEY (`TID`);
+  ADD PRIMARY KEY (`TID`),
+  ADD KEY `CID` (`CID`),
+  ADD KEY `PID` (`PID`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`UID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `project`
+--
+ALTER TABLE `project`
+  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `project_meta`
+--
+ALTER TABLE `project_meta`
+  ADD CONSTRAINT `project_meta_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `project` (`PID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `project_tag`
+--
+ALTER TABLE `project_tag`
+  ADD CONSTRAINT `project_tag_ibfk_1` FOREIGN KEY (`CID`) REFERENCES `category` (`CID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `project_tag_ibfk_2` FOREIGN KEY (`PID`) REFERENCES `project` (`PID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

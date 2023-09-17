@@ -7,7 +7,8 @@ let currStep = 1;
         if (currStep === 4) {
           $("#nextStep").html("Register");
           $("#nextStep").removeAttr("disabled");
-        } else if (currStep === 1) {
+        }
+        else if (currStep === 1) {
           $("#prvStep").attr("disabled", "disabled");
           $("#nextStep").html("Save & Next");
           $("#nextStep").removeAttr("disabled");
@@ -36,8 +37,6 @@ let currStep = 1;
       }
 
       function updateFormData() {
-        // Update formData object based on the step
-        // For example, you can use form field IDs to get the values and update the object
         formData[`step${currStep}`] = $(`#step-${currStep} input`).val();
         console.log("submit");
       }

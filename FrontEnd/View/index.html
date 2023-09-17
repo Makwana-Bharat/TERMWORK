@@ -406,6 +406,11 @@
 
     <!--ready Document-->
     <script>
+      const ApiEndPoint = {
+        Base: "http://localhost/TERMWORK/BackEnd/APIS/",
+        Login: "Auth/Login.php",
+        Register: "Auth/Register.php",
+      };
       //handle app click
       const showApp = (app) => {
         alert("wrpo");
@@ -424,18 +429,35 @@
         };
         $.ajax({
           type: "POST",
-          url: "your-login-endpoint", // Replace with your actual login API URL
-          data: formData,
-          success: function (response) {
+          url: `${ApiEndPoint.Base}/${ApiEndPoint.Login}`,
+          data: JSON.stringify(formData),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: (response) => {
             if (response.success) {
-              alert("Login successful");
-              window.location.href = "dashboard.html";
+              Swal.fire({
+                icon: "success",
+                title: "Login successful",
+                showConfirmButton: false,
+                timer: 1500,
+              }).then(() => {
+                window.location.href = "./View/Developer/dashboard.html";
+              });
             } else {
-              alert("Login failed. Please check your credentials.");
+              Swal.fire({
+                icon: "error",
+                title: "Login failed",
+                text: "Please check your credentials.",
+              });
             }
           },
-          error: function (error) {
+          error: (error) => {
             console.error("An error occurred:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "An error occurred while processing your request.",
+            });
           },
         });
       };
