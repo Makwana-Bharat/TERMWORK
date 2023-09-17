@@ -101,6 +101,7 @@ const LoadApps = () => {
     appData.mostRated.forEach((app)=> {
         var $appDiv = `
                 <div
+                      id="App${app.id}"
                       style="min-width: 460px"
                       class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
                       onclick="showApp(${app})"

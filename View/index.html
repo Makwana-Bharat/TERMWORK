@@ -38,7 +38,7 @@
     <!--<script src="./View/assets/js/main.js"></script>-->
     <script src="./View/assets/js/Auth/register.js"></script>
     <script src="./View/assets/js/Auth/forgotPass.js"></script>
-    <script src="./View/assets/js/Auth/login.js"></script>
+    <!--<script src="./View/assets/js/Auth/login.js"></script>-->
   </head>
 
   <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
@@ -123,30 +123,28 @@
         </div>
       </section>
     </main>
+
+    <!--Load Data-->
     <script>
-      const showApp = (app) => {
-        alert("wrpo");
-      };
-      $(document).ready(() => {
-        const LoadApps = () => {
-          //Filter Tags
-          let tags = [
-            "android",
-            "ios",
-            "Web",
-            "React",
-            "React Native",
-            "C",
-            "C++",
-            "Java",
-            "Mern",
-            "Marn",
-            "UI/UX",
-            "Lib",
-            "API",
-            "Shell Script",
-          ];
-          var $activeDiv = `<div
+      const LoadApps = () => {
+        //Filter Tags
+        let tags = [
+          "android",
+          "ios",
+          "Web",
+          "React",
+          "React Native",
+          "C",
+          "C++",
+          "Java",
+          "Mern",
+          "Marn",
+          "UI/UX",
+          "Lib",
+          "API",
+          "Shell Script",
+        ];
+        var $activeDiv = `<div
                   style="
                     box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
                     background: rgba(0, 0, 0, 0.5);
@@ -157,9 +155,9 @@
                 >
                   <p>All</p>
                 </div>`;
-          $(".filter").append($activeDiv);
-          tags.forEach((tag) => {
-            var $tagDiv = `<div
+        $(".filter").append($activeDiv);
+        tags.forEach((tag) => {
+          var $tagDiv = `<div
                       style="
                           box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
                           background: rgba(255, 255, 255, 0.05);
@@ -170,66 +168,66 @@
                   >
                       <p>${tag}</p>
                   </div>`;
-            $(".filter").append($tagDiv);
-          });
+          $(".filter").append($tagDiv);
+        });
 
-          //load App
-          var appData = {
-            mostRated: [
-              {
-                id: 101,
-                Thumbnail: "https://wallpapercave.com/wp/wp3144352.jpg",
-                appName: "Free Fire",
-                DownloadLink: "",
-                rating: "5.0",
-              },
-              {
-                id: 102,
-                Thumbnail:
-                  "https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg",
-                appName: "Clash of Empire",
-                DownloadLink: "",
-                rating: "4.5",
-              },
-              {
-                id: 103,
-                Thumbnail:
-                  "https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg",
-                appName: "Farming Simulation - 2023",
-                DownloadLink: "",
-                rating: "5.0",
-              },
-              {
-                id: 104,
-                Thumbnail:
-                  "https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg",
-                appName: "Angry Birds",
-                DownloadLink: "",
-                rating: "3.0",
-              },
-            ],
-            Games: [
-              {
-                id: 105,
-                Thumbnail:
-                  "https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png",
-                appName: "Free Fire",
-                DownloadLink: "",
-                rating: "2.0",
-              },
-              {
-                id: 106,
-                Thumbnail:
-                  "https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg",
-                appName: "Free Fire",
-                DownloadLink: "",
-                rating: "5.0",
-              },
-            ],
-          };
+        //load App
+        var appData = {
+          mostRated: [
+            {
+              id: 101,
+              Thumbnail: "https://wallpapercave.com/wp/wp3144352.jpg",
+              appName: "Free Fire",
+              DownloadLink: "",
+              rating: "5.0",
+            },
+            {
+              id: 102,
+              Thumbnail:
+                "https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg",
+              appName: "Clash of Empire",
+              DownloadLink: "",
+              rating: "4.5",
+            },
+            {
+              id: 103,
+              Thumbnail:
+                "https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg",
+              appName: "Farming Simulation - 2023",
+              DownloadLink: "",
+              rating: "5.0",
+            },
+            {
+              id: 104,
+              Thumbnail:
+                "https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg",
+              appName: "Angry Birds",
+              DownloadLink: "",
+              rating: "3.0",
+            },
+          ],
+          Games: [
+            {
+              id: 105,
+              Thumbnail:
+                "https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png",
+              appName: "Free Fire",
+              DownloadLink: "",
+              rating: "2.0",
+            },
+            {
+              id: 106,
+              Thumbnail:
+                "https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg",
+              appName: "Free Fire",
+              DownloadLink: "",
+              rating: "5.0",
+            },
+          ],
+        };
 
-          appData.mostRated.forEach((app) => {
-            var $appDiv = `
+        appData.mostRated.forEach((app) => {
+          var $appDiv = `
                 <div
                       style="min-width: 460px"
                       class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
@@ -329,11 +327,11 @@
                       </div>
                     </div>
                 `;
-            $("#mostRated").append($appDiv);
-          });
+          $("#mostRated").append($appDiv);
+        });
 
-          //Other
-          var app = `<div
+        //Other
+        var app = `<div
                   class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
                 >
                   <img
@@ -343,9 +341,9 @@
                   />
                   <p class="text-center w-24 flex-wrap h-12 pt-2">${appData.Games[1].appName}</p>
                 </div>`;
-          $("#Games").append(app);
-          for (let i = 0; i < 20; i++) {
-            var app = `<div
+        $("#Games").append(app);
+        for (let i = 0; i < 20; i++) {
+          var app = `<div
                 class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30"
               >
                 <img
@@ -355,11 +353,92 @@
                 />
                 <p class="text-center w-24 flex-wrap h-12 pt-2">${appData.Games[0].appName}</p>
               </div>`;
-            $("#Games").append(app);
-          }
-        };
+          $("#Games").append(app);
+        }
+      };
+    </script>
+
+    <!--Login-->
+    <script>
+      const showLoginModal = () => {
+        currStep = 1;
+        Swal.fire({
+          html: `
+                <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:450px">
+                      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                          <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white" style="letter-spacing:1px">
+                              Sign in to your account
+                          </h1>
+                          <form class="space-y-4 md:space-y-6" method="post" onsubmit="Login(event)">
+                              <div>
+                                  <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
+                                  <input type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                              </div>
+                              <div>
+                                  <label for="password" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Password</label>
+                                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                              </div>
+                              <div class="flex items-center justify-between">
+                                  <div class="flex items-start">
+                                      <div class="flex items-center h-5">
+                                        <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-neutral-300 rounded bg-neutral-50 focus:ring-3 focus:ring-blue-300 dark:bg-neutral-700 dark:border-neutral-600 dark:focus:ring-blue-600 dark:ring-offset-neutral-800" required="">
+                                      </div>
+                                      <div class="ml-3 text-sm">
+                                        <label for="remember" class="text-neutral-500 dark:text-neutral-300">Remember me</label>
+                                      </div>
+                                  </div>
+                                  <p class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="ForgotPass()">Forgot password?</p>
+                              </div>
+                              <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign in</button>
+                              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                  Don’t have an account yet? <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="frmSignUp()">Sign up</a>
+                              </p>
+                          </form>
+                      </div>
+                  </div>
+                `,
+          padding: 0,
+          width: "450px",
+          showConfirmButton: false,
+        });
+      };
+    </script>
+
+    <!--ready Document-->
+    <script>
+      //handle app click
+      const showApp = (app) => {
+        alert("wrpo");
+      };
+
+      $(document).ready(() => {
         LoadApps();
       });
+
+      //login Logic
+      const Login = (event) => {
+        event.preventDefault();
+        const formData = {
+          email: $("#email").val(),
+          password: $("#password").val(),
+        };
+        $.ajax({
+          type: "POST",
+          url: "your-login-endpoint", // Replace with your actual login API URL
+          data: formData,
+          success: function (response) {
+            if (response.success) {
+              alert("Login successful");
+              window.location.href = "dashboard.html";
+            } else {
+              alert("Login failed. Please check your credentials.");
+            }
+          },
+          error: function (error) {
+            console.error("An error occurred:", error);
+          },
+        });
+      };
     </script>
   </body>
 </html>
