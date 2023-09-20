@@ -917,7 +917,7 @@
             <label class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white" for="screenshots">
               Upload Project Screenshots
             </label>
-            <input name="screenshots" id="screenshots" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="screenshots" type="file" accept=".jpg,.png,.svg,.gif" multiple required />
+            <input name="screenshots" id="screenshots" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" type="file" accept=".jpg,.png,.svg,.gif" multiple required />
             <p class="mt-1 text-sm text-neutral-700 dark:text-neutral-700" id="file_input_help">
               SVG, PNG, JPG or GIF (MAX. 800x400px).
             </p>
@@ -1115,13 +1115,10 @@
         const projectTag = document.getElementById("tag").value;
         const githubLink = document.getElementById("github").value;
         const liveLink = document.getElementById("live").value;
-
         // Get the file inputs
         const thumbnailFile = Thumbnail;
         const outcomeFile = document.getElementById("projectFile").files[0];
-
-        // Get all file inputs (excluding Thumbnail and projectFile)
-
+        const screenshotsFiles = document.getElementById("screenshots").files;
         // Check if both files are defined
         if (!thumbnailFile || !outcomeFile) {
           console.error("Files are not defined.");
@@ -1142,6 +1139,10 @@
         // Append the Thumbnail and outcomeFile files to the FormData object
         formData.append("Thumbnail", thumbnailFile);
         formData.append("projectFile", outcomeFile);
+        // Get all file inputs (excluding Thumbnail and projectFile)
+        for (let i = 0; i < screenshotsFiles.length; i++) {
+          formData.append(`screenshot${i}`, screenshotsFiles[i]);
+        }
         const apiUrl = "http://localhost/TERMWORK/BackEnd/APIS/Project/Add.php";
 
         // Use $.ajax to send the FormData
