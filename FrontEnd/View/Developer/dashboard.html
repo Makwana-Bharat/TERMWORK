@@ -1,423 +1,1167 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LIVE STORE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <!-- Custom Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=IM+Fell+DW+Pica&family=Tilt+Prism&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=IM+Fell+DW+Pica&family=Tilt+Prism&display=swap"
+      rel="stylesheet"
+    />
+    <!-- SweetAlert-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <!-- JQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
     <style>
-        ::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-        }
+      ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
 
-        * {
-            font-family: "Bree Serif", serif;
-            letter-spacing: 1px;
-        }
+      * {
+        font-family: "Bree Serif", serif;
+        letter-spacing: 1px;
+      }
 
-        body {
-            overscroll-behavior: none;
-            /* Prevents scrolling beyond the bounds of the content */
-            scroll-behavior: smooth;
-            /* Enables smooth scrolling behavior */
-        }
+      body {
+        overscroll-behavior: none;
+        /* Prevents scrolling beyond the bounds of the content */
+        scroll-behavior: smooth;
+        /* Enables smooth scrolling behavior */
+      }
 
-        div .app-bar-title {
-            color: white;
-            font-size: large;
-        }
+      div .app-bar-title {
+        color: white;
+        font-size: large;
+      }
 
-        div .app-bar-title h2 {
-            position: relative;
-            top: 12px;
-            left: 5px;
-        }
+      div .app-bar-title h2 {
+        position: relative;
+        top: 12px;
+        left: 5px;
+      }
 
-        .separator {
-            display: inline-block;
-            width: 100%;
-            height: 0px;
-            border-bottom: 2px solid gray;
-            position: relative;
-        }
+      .separator {
+        display: inline-block;
+        width: 100%;
+        height: 0px;
+        border-bottom: 2px solid gray;
+        position: relative;
+      }
 
-        .separator::before {
-            content: "";
-            position: absolute;
-            top: -3.015px;
-            right: 100%;
-            width: 7px;
-            height: 7px;
-            transform: rotate(45deg);
-            background: gray;
-        }
+      .separator::before {
+        content: "";
+        position: absolute;
+        top: -3.015px;
+        right: 100%;
+        width: 7px;
+        height: 7px;
+        transform: rotate(45deg);
+        background: gray;
+      }
 
-        .TopDownload {
-            width: 500px !important;
-            margin: 5px;
-            cursor: pointer;
-        }
+      .TopDownload {
+        width: 500px !important;
+        margin: 5px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="h-screen w-screen bg-neutral-200 overflow-hidden">
+  <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
     <!-- Container  -->
     <main class="h-screen w-screen bg-neutral-800" style="display: flex">
-        <!-- Sidenav -->
-        <nav class="flex flex-col justify-between items-center bg-neutral-900 w-16 h-full p-2 pb-3">
-            <div class="w-full">
-                <img src="https://cdn-icons-png.flaticon.com/512/10490/10490234.png" alt="" />
+      <!-- Sidenav -->
+      <nav
+        class="flex flex-col justify-between items-center bg-neutral-900 w-16 h-full p-2 pb-3"
+      >
+        <div class="w-full">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/10490/10490234.png"
+            alt=""
+          />
+        </div>
+        <footer class="w-full justify-center flex">
+          <i
+            class="fa-solid fa-power-off text-white hover:text-slate-300"
+            style="font-size: 34px"
+          ></i>
+        </footer>
+      </nav>
+      <!-- Main Section -->
+      <section class="w-full">
+        <header class="flex justify-between w-11/12 px-4 py-2 fixed">
+          <label
+            for=""
+            style="font-family: 'Tilt Prism', cursive"
+            class="text-white text-2xl"
+            >LIVE STORE</label
+          >
+          <div class="flex relative left-16">
+            <div
+              class="flex text-white w-fit h-fit pl-2 rounded-3xl items-center justify-between mr-2 bg-neutral-900 cursor-pointer"
+            >
+              <label for="name" style="font-family: roboto"
+                >Makwana Bharat</label
+              >
+              <img
+                class="w-8 m-1"
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                alt=""
+              />
             </div>
-            <footer class="w-full justify-center flex">
-                <i class="fa-solid fa-power-off text-white hover:text-slate-300" style="font-size: 34px"></i>
-            </footer>
-        </nav>
-        <!-- Main Section -->
-        <section class="w-full">
-            <header class="flex justify-between w-11/12 px-4 py-2 fixed">
-                <label for="" style="font-family: 'Tilt Prism', cursive" class="text-white text-2xl">LIVE STORE</label>
-                <div class="flex relative left-16">
-                    <div class="flex text-white w-fit h-fit pl-2 rounded-3xl items-center justify-between mr-2 bg-neutral-900 cursor-pointer">
-                        <label for="name" style="font-family: roboto">Makwana Bharat</label>
-                        <img class="w-8 m-1" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="" />
-                    </div>
-                    <i class="fa-solid fa-rotate text-white text-2xl m-1 cursor-pointer hover:text-slate-300"></i>
-                </div>
-            </header>
-            <!-- Search box-->
-            <div class="p-4 pt-16 flex justify-center">
-                <div class="w-3/6 h-14 rounded-3xl pl-4" style="
+            <i
+              class="fa-solid fa-rotate text-white text-2xl m-1 cursor-pointer hover:text-slate-300"
+            ></i>
+          </div>
+        </header>
+        <!-- Search box-->
+        <div class="p-4 pt-16 flex justify-center">
+          <div
+            class="w-3/6 h-14 rounded-3xl pl-4"
+            style="
               box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.6), inset 1px 1px 1px gray;
-            ">
-                    <input type="" name="" value="" placeholder="search.." class="w-11/12 bg-transparent outline-0 h-full text-white text-lg" spellcheck="flase" />
-                    <i class="fa-solid fa-search text-slate-300 text-lg m-1 hover:text-white cursor-pointer"></i>
-                </div>
-            </div>
-            <!-- Filter Tags -->
-            <div class="filter p-4 pt-1 flex justify-center text-slate-300" style="overflow-y: auto; width: 95vw">
-                <div style="
+            "
+          >
+            <input
+              type=""
+              name=""
+              value=""
+              placeholder="search.."
+              class="w-11/12 bg-transparent outline-0 h-full text-white text-lg"
+              spellcheck="flase"
+            />
+            <i
+              class="fa-solid fa-search text-slate-300 text-lg m-1 hover:text-white cursor-pointer"
+            ></i>
+          </div>
+        </div>
+        <!-- Filter Tags -->
+        <div
+          class="filter p-4 pt-1 flex justify-center text-slate-300"
+          style="overflow-y: auto; width: 95vw"
+        >
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(0, 0, 0, 0.5);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>All</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>All</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Android</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Android</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>iOS</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>iOS</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Web</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Web</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>React Native</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>React Native</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Flutter</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Flutter</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>C</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>C</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>C++</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>C++</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Java</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Java</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>MERN</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>MERN</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>MARN</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>MARN</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>UI/UX</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>UI/UX</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>API</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>API</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Liabrary</p>
-                </div>
-                <div style="
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Liabrary</p>
+          </div>
+          <div
+            style="
               box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
               background: rgba(255, 255, 255, 0.05);
               min-width: max-content;
               max-height: max-content;
-            " class="px-3 py-1 rounded-full m-1 flex justify-center items-center">
-                    <p>Shell Script</p>
-                </div>
+            "
+            class="px-3 py-1 rounded-full m-1 flex justify-center items-center"
+          >
+            <p>Shell Script</p>
+          </div>
+        </div>
+        <!-- Apps Container -->
+        <div
+          class="flex-1 px-10 flex-1 w-full"
+          style="overflow-y: auto; width: 98vw"
+        >
+          <!--Most Rated..-->
+          <div class="w-full flex flex-col">
+            <div class="app-bar-title w-full pb-3">
+              <span class="separator"></span>
             </div>
-            <!-- Apps Container -->
-            <div class="flex-1 px-10 flex-1 w-full" style="overflow-y: auto; width: 98vw">
-                <!--Most Rated..-->
-                <div class="w-full flex flex-col">
-                    <div class="app-bar-title w-full pb-3">
-                        <span class="separator"></span>
+            <div class="flex w-full overflow-x-scroll">
+              <div
+                style="min-width: 460px"
+                class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
+              >
+                <img
+                  class="rounded-lg h-full w-full"
+                  src="https://wallpapercave.com/wp/wp3144352.jpg"
+                  alt=""
+                />
+                <!--Bottom Section-->
+                <div
+                  class="flex justify-between p-2 w-full h-20 items-center"
+                  style="
+                    position: relative;
+                    background: linear-gradient(
+                      rgba(0, 0, 0, 0.2),
+                      rgba(0, 0, 0, 0.8),
+                      rgba(0, 0, 0, 1)
+                    );
+                    bottom: 25%;
+                    backdrop-filter: blur(20);
+                  "
+                >
+                  <div>
+                    <label for="" class="text-white text-lg">Free Fire</label>
+                    <div class="flex items-center mt-2 mb-5">
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
+                        >5.0</span
+                      >
                     </div>
-                    <div class="flex w-full overflow-x-scroll">
-                        <div style="min-width: 460px" class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72">
-                            <img class="rounded-lg h-full w-full" src="https://wallpapercave.com/wp/wp3144352.jpg" alt="" />
-                            <!--Bottom Section-->
-                            <div class="flex justify-between p-2 w-full h-20 items-center" style="
-                    position: relative;
-                    background: linear-gradient(
-                      rgba(0, 0, 0, 0.2),
-                      rgba(0, 0, 0, 0.8),
-                      rgba(0, 0, 0, 1)
-                    );
-                    bottom: 25%;
-                    backdrop-filter: blur(20);
-                  ">
-                                <div>
-                                    <label for="" class="text-white text-lg">Free Fire</label>
-                                    <div class="flex items-center mt-2 mb-5">
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">5.0</span>
-                                    </div>
-                                </div>
-                                <a href="" class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center">Download<i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div style="min-width: 460px" class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72">
-                            <img class="rounded-lg h-full w-full" src="https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg" alt="" />
-                            <!--Bottom Section-->
-                            <div class="flex justify-between p-2 w-full h-20 items-center" style="
-                    position: relative;
-                    background: linear-gradient(
-                      rgba(0, 0, 0, 0.2),
-                      rgba(0, 0, 0, 0.8),
-                      rgba(0, 0, 0, 1)
-                    );
-                    bottom: 25%;
-                    backdrop-filter: blur(20);
-                  ">
-                                <div>
-                                    <label for="" class="text-white text-lg">Clash of Impire</label>
-                                    <div class="flex items-center mt-2 mb-5">
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 dark:text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 20">
-                                            <!-- Filled half -->
-                                            <defs>
-                                                <linearGradient id="half-filled-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                    <stop offset="50%" style="stop-color: currentColor; stop-opacity: 1" />
-                                                    <stop offset="50%" style="stop-color: transparent; stop-opacity: 0" />
-                                                </linearGradient>
-                                            </defs>
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" fill="url(#half-filled-gradient)" />
-
-                                            <!-- Non-filled half -->
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" fill="none" />
-                                        </svg>
-
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">4.5</span>
-                                    </div>
-                                </div>
-                                <a href="" class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center">Download<i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div style="min-width: 460px" class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72">
-                            <img class="rounded-lg h-full w-full" src="https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg" alt="" />
-                            <!--Bottom Section-->
-                            <div class="flex justify-between p-2 w-full h-20 items-center" style="
-                    position: relative;
-                    background: linear-gradient(
-                      rgba(0, 0, 0, 0.2),
-                      rgba(0, 0, 0, 0.8),
-                      rgba(0, 0, 0, 1)
-                    );
-                    bottom: 25%;
-                    backdrop-filter: blur(20);
-                  ">
-                                <div>
-                                    <label for="" class="text-white text-lg">Farming Simulation - 2023</label>
-                                    <div class="flex items-center mt-2 mb-5">
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">3.0</span>
-                                    </div>
-                                </div>
-                                <a href="" class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center" style="left: 200px">Download<i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div style="min-width: 460px" class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72">
-                            <img class="rounded-lg h-full w-full" src="https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg" alt="" />
-                            <!--Bottom Section-->
-                            <div class="flex justify-between p-2 w-full h-20 items-center" style="
-                    position: relative;
-                    background: linear-gradient(
-                      rgba(0, 0, 0, 0.2),
-                      rgba(0, 0, 0, 0.8),
-                      rgba(0, 0, 0, 1)
-                    );
-                    bottom: 25%;
-                    backdrop-filter: blur(20);
-                  ">
-                                <div>
-                                    <label for="" class="text-white text-lg">Angry Birds</label>
-                                    <div class="flex items-center mt-2 mb-5">
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">3.0</span>
-                                    </div>
-                                </div>
-                                <a href="" class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center" style="left: 200px">Download<i class="fa fa-download ml-2" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  <a
+                    href=""
+                    class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
+                    >Download<i
+                      class="fa fa-download ml-2"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
                 </div>
-                <!--other-->
-                <div class="w-full">
-                    <div class="app-bar-title w-full">
-                        <h2>Game</h2>
-                        <span class="separator"></span>
+              </div>
+              <div
+                style="min-width: 460px"
+                class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
+              >
+                <img
+                  class="rounded-lg h-full w-full"
+                  src="https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg"
+                  alt=""
+                />
+                <!--Bottom Section-->
+                <div
+                  class="flex justify-between p-2 w-full h-20 items-center"
+                  style="
+                    position: relative;
+                    background: linear-gradient(
+                      rgba(0, 0, 0, 0.2),
+                      rgba(0, 0, 0, 0.8),
+                      rgba(0, 0, 0, 1)
+                    );
+                    bottom: 25%;
+                    backdrop-filter: blur(20);
+                  "
+                >
+                  <div>
+                    <label for="" class="text-white text-lg"
+                      >Clash of Impire</label
+                    >
+                    <div class="flex items-center mt-2 mb-5">
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 dark:text-yellow-300"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 22 20"
+                      >
+                        <!-- Filled half -->
+                        <defs>
+                          <linearGradient
+                            id="half-filled-gradient"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="0%"
+                          >
+                            <stop
+                              offset="50%"
+                              style="stop-color: currentColor; stop-opacity: 1"
+                            />
+                            <stop
+                              offset="50%"
+                              style="stop-color: transparent; stop-opacity: 0"
+                            />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                          fill="url(#half-filled-gradient)"
+                        />
+
+                        <!-- Non-filled half -->
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                          fill="none"
+                        />
+                      </svg>
+
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
+                        >4.5</span
+                      >
                     </div>
-                    <div class="flex w-full" style="overflow-x: auto">
-                        <div class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30">
-                            <img class="w-20 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700" src="https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png" alt="" />
-                            <p class="text-center w-24 flex-wrap h-12 pt-2">Free Fire</p>
-                        </div>
-                        <div class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30">
-                            <img class="w-20 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700" src="https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg" alt="" />
-                            <p class="text-center w-24 flex-wrap h-12 pt-2">
-                                Clash of Royals
-                            </p>
-                        </div>
-                    </div>
+                  </div>
+                  <a
+                    href=""
+                    class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
+                    >Download<i
+                      class="fa fa-download ml-2"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
                 </div>
+              </div>
+              <div
+                style="min-width: 460px"
+                class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
+              >
+                <img
+                  class="rounded-lg h-full w-full"
+                  src="https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg"
+                  alt=""
+                />
+                <!--Bottom Section-->
+                <div
+                  class="flex justify-between p-2 w-full h-20 items-center"
+                  style="
+                    position: relative;
+                    background: linear-gradient(
+                      rgba(0, 0, 0, 0.2),
+                      rgba(0, 0, 0, 0.8),
+                      rgba(0, 0, 0, 1)
+                    );
+                    bottom: 25%;
+                    backdrop-filter: blur(20);
+                  "
+                >
+                  <div>
+                    <label for="" class="text-white text-lg"
+                      >Farming Simulation - 2023</label
+                    >
+                    <div class="flex items-center mt-2 mb-5">
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
+                        >3.0</span
+                      >
+                    </div>
+                  </div>
+                  <a
+                    href=""
+                    class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
+                    style="left: 200px"
+                    >Download<i
+                      class="fa fa-download ml-2"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+              <div
+                style="min-width: 460px"
+                class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
+              >
+                <img
+                  class="rounded-lg h-full w-full"
+                  src="https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg"
+                  alt=""
+                />
+                <!--Bottom Section-->
+                <div
+                  class="flex justify-between p-2 w-full h-20 items-center"
+                  style="
+                    position: relative;
+                    background: linear-gradient(
+                      rgba(0, 0, 0, 0.2),
+                      rgba(0, 0, 0, 0.8),
+                      rgba(0, 0, 0, 1)
+                    );
+                    bottom: 25%;
+                    backdrop-filter: blur(20);
+                  "
+                >
+                  <div>
+                    <label for="" class="text-white text-lg">Angry Birds</label>
+                    <div class="flex items-center mt-2 mb-5">
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-yellow-300 mr-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <svg
+                        class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 22 20"
+                      >
+                        <path
+                          d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                        />
+                      </svg>
+                      <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
+                        >3.0</span
+                      >
+                    </div>
+                  </div>
+                  <a
+                    href=""
+                    class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
+                    style="left: 200px"
+                    >Download<i
+                      class="fa fa-download ml-2"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+          <!--other-->
+          <div class="w-full">
+            <div class="app-bar-title w-full">
+              <h2>Game</h2>
+              <span class="separator"></span>
+            </div>
+            <div class="flex w-full" style="overflow-x: auto">
+              <div
+                class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30"
+              >
+                <img
+                  class="w-20 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700"
+                  src="https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png"
+                  alt=""
+                />
+                <p class="text-center w-24 flex-wrap h-12 pt-2">Free Fire</p>
+              </div>
+              <div
+                class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30"
+              >
+                <img
+                  class="w-20 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700"
+                  src="https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg"
+                  alt=""
+                />
+                <p class="text-center w-24 flex-wrap h-12 pt-2">
+                  Clash of Royals
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Add New Project -->
+      <button
+        id="showNewProjectFrm"
+        type="button"
+        class="fixed bottom-5 right-5 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-2xl text-2xl w-14 h-14 flex items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="w-8 h-8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          ></path>
+        </svg>
+      </button>
     </main>
-</body>
+    <script>
+      let AddNewProject = $("#showNewProjectFrm");
+      let form = `
+      <div class="bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:1080px">
+      <div class="p-8 rounded-lg shadow-lg w-full">
+    <h1 class="text-white text-2xl mb-5" style="letter-spacing: 1px">
+      New Project
+    </h1>
+    <form action="" id="projectForm" method="POST" enctype="multipart/form-data" onsubmit="addProject(event)">
+      <div class="flex w-full h-full flex-wrap">
+        <!-- Left Side---->
+        <div class="pr-5 w-2/5">
+          <!-- Project Name -->
+          <div class="mb-4">
+            <label for="name" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+              Project Name:
+            </label>
+            <input type="text" id="name" name="name" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="enter project name" required />
+          </div>
 
+          <!-- Custom Drop Zone for Thumbnail -->
+<div class="mb-4">
+  <label for="thumbnail" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+    Thumbnail:
+  </label>
+  <div class="w-full">
+    <div id="image-container" class="relative flex items-center justify-center" style="width: 100px; height: 100px">
+      <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-full border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-bray-800 dark:bg-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-600">
+        <div class="flex flex-col items-center justify-center pt-6">
+          <svg class="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+          </svg>
+        </div>
+        <input id="dropzone-file" type="file" name="thumbnail" class="hidden" accept=".png,.jpg,.jpeg,.gif" onchange="displaySelectedImage(this)" required />
+      </label>
+    </div>
+  </div>
+  <button id="clear-button" class="relative bottom-28 left-20 mt-2 p-2 text-white bg-red-500 rounded-full hidden" onclick="clearImageSelection()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+          <!-- ... (Other form elements) ... -->
+
+          <!-- Visibility -->
+          <div class="mb-4">
+            <label for="isVisible" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+              Visibility:
+            </label>
+            <div class="flex w-full justify-between">
+              <div class="flex items-center pl-4 border border-neutral-200 rounded dark:border-neutral-700" style="width: 45%">
+                <input id="bordered-radio-1" type="radio" value="private" name="visibility" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" />
+                <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
+                  Private
+                </label>
+              </div>
+              <div class="flex items-center pl-4 border border-neutral-200 rounded dark:border-neutral-700" style="width: 45%">
+                <input checked id="bordered-radio-2" type="radio" name="visibility" value="public" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" required />
+                <label for="bordered-radio-2" class="w-full py-4 ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
+                  Public
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Drop Zone for Project File -->
+<div class="mb-4 mt-2 w-full">
+  <label for="projectFile" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+    Upload Project File:
+  </label>
+  <div class="flex items-center justify-center w-full" style="height: 275px">
+    <label for="projectFile" class="flex flex-col items-center justify-center h-full w-full h-64 border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-bray-800 dark:bg-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-600">
+      <div class="flex flex-col items-center justify-center pt-5 pb-6 h-full">
+        <svg class="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+          <!-- Your SVG icon here -->
+        </svg>
+        <p class="mb-2 text-sm text-neutral-500 dark:text-neutral-400">
+          <span class="font-semibold">Click to upload</span> or drag and drop
+        </p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400" id="fileInfo">
+          Supported file types: .apk, .ipa, .c, .cpp, .java, ...
+        </p>
+      </div>
+      <input name="FinalOutcome" id="projectFile" type="file" value="" accept=".apk, .ipa, .c, .cpp, .java,.exe,.out" class="hidden" required onchange="projectFileSelected(this)" />
+    </label>
+  </div>
+</div>
+        </div>
+
+        <!--Right Side-->
+        <div class="w-3/5">
+          <!-- Description -->
+          <div class="mb-4 w-full">
+            <label for="description" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+              Description:
+            </label>
+            <textarea value="" name="description" id="description"  placeholder="tell about project..." class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none" style="height: 200px" required></textarea>
+          </div>
+
+          <!-- Screenshots-->
+          <div class="w-full">
+            <label class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white" for="screenshots">
+              Upload Project Screenshots
+            </label>
+            <input name="screenshots" id="screenshots" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="screenshots" type="file" accept=".jpg,.png,.svg,.gif" multiple required />
+            <p class="mt-1 text-sm text-neutral-700 dark:text-neutral-700" id="file_input_help">
+              SVG, PNG, JPG or GIF (MAX. 800x400px).
+            </p>
+          </div>
+
+          <!-- Project Tag -->
+          <div class="mb-4 mt-2">
+            <label for="tag" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
+              Project Tags:
+            </label>
+            <input type="tag" id="tag" name="tag" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="andoid,react..." required />
+          </div>
+
+          <!--Tags-->
+          <!--<div class="flex overflow-x-auto"></div>-->
+            <label
+                for="projectLinks"
+                class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
+                >Project Links:</label
+              >
+
+              <div class="flex mb-4 mt-2">
+                <span
+                  class="inline-flex items-center pt-1 pl-2 text-sm text-neutral-900 bg-neutral-200 border border-r-0 border-neutral-300 rounded-l-md dark:bg-neutral-600 dark:text-neutral-400 dark:border-neutral-600"
+                >
+                  <svg
+                    class="w-8 h-8 text-github-blue"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  id="github"
+                  name="github"
+                  class="rounded-none rounded-r-lg bg-neutral-50 border border-neutral-300 text-neutral-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="https://github.com/username/repolink"
+                  required
+                />
+              </div>
+              <div class="flex">
+                <span
+                  class="inline-flex items-center pt-1 p-1 text-sm text-neutral-900 bg-neutral-200 border border-r-0 border-neutral-300 rounded-l-md dark:bg-neutral-600 dark:text-neutral-400 dark:border-neutral-600"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    class="w-8 h-8"
+                    viewBox="0 0 48 48"
+                  >
+                    <circle cx="24" cy="24" r="6" fill="#f44336"></circle>
+                    <path
+                      fill="#f44336"
+                      d="M17.09,16.789L14.321,13.9C11.663,16.448,10,20.027,10,24s1.663,7.552,4.321,10.1l2.769-2.889 C15.19,29.389,14,26.833,14,24C14,21.167,15.19,18.61,17.09,16.789z"
+                    ></path>
+                    <path
+                      fill="#f44336"
+                      d="M33.679,13.9l-2.769,2.889C32.81,18.611,34,21.167,34,24c0,2.833-1.19,5.389-3.09,7.211l2.769,2.889 C36.337,31.552,38,27.973,38,24S36.337,16.448,33.679,13.9z"
+                    ></path>
+                    <g>
+                      <path
+                        fill="#f44336"
+                        d="M11.561,11.021l-2.779-2.9C4.605,12.125,2,17.757,2,24s2.605,11.875,6.782,15.879l2.779-2.9 C8.142,33.701,6,29.1,6,24S8.142,14.299,11.561,11.021z"
+                      ></path>
+                      <path
+                        fill="#f44336"
+                        d="M39.218,8.121l-2.779,2.9C39.858,14.299,42,18.9,42,24s-2.142,9.701-5.561,12.979l2.779,2.9 C43.395,35.875,46,30.243,46,24S43.395,12.125,39.218,8.121z"
+                      ></path>
+                    </g>
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  id="live"
+                  name="live"
+                  class="rounded-none rounded-r-lg bg-neutral-50 border border-neutral-300 text-neutral-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="https://live link"
+                />
+              </div>
+
+          <div class="mt-6 flex justify-end">
+            <button type="submit" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-3 text-center mr-2 mb-2">
+              + Add New Project
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+    </form>
+  </div>
+</div>
+`;
+
+      AddNewProject.on("click", () => {
+        Swal.fire({
+          html: form,
+          padding: 0,
+          width: "1080px",
+          showConfirmButton: false,
+        });
+      });
+    </script>
+    <script>
+      var Thumbnail;
+      function displaySelectedImage(input) {
+        const imageContainer = $("#image-container");
+        const clearButton = $("#clear-button");
+        Thumbnail = input.files[0];
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            const image = $("<img>");
+            image.attr("src", e.target.result);
+            image.css({ width: "100px", height: "100px" });
+            imageContainer.html("");
+            imageContainer.append(image);
+            clearButton.css("display", "block");
+          };
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      function clearImageSelection() {
+        const input = $("#dropzone-file");
+        const imageContainer = $("#image-container");
+        const clearButton = $("#clear-button");
+
+        input.val("");
+        imageContainer.html(`
+                  <label
+                            for="dropzone-file"
+                            class="flex flex-col items-center justify-center w-full h-full border-2 border-neutral-300 border-dashed rounded-lg cursor-pointer bg-neutral-50 dark:hover:bg-bray-800 dark:bg-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-600"
+                          >
+                            <div
+                              class="flex flex-col items-center justify-center pt-6"
+                            >
+                              <svg
+                                class="w-8 h-8 mb-4 text-neutral-500 dark:text-neutral-400"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 20 16"
+                              >
+                                <path
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                                />
+                              </svg>
+                            </div>
+                            <input
+                              id="dropzone-file"
+                              type="file"
+                              class="hidden"
+                              accept=".png,.jpg,.jpeg,.gif"
+                              onchange="displaySelectedImage(this)"
+                            />
+                          </label>
+              `);
+        clearButton.css("display", "none");
+      }
+      function projectFileSelected(input) {
+        const fileInfoParagraph = document.getElementById("fileInfo");
+
+        if (input.files.length > 0) {
+          const selectedFileName = input.files[0].name;
+
+          fileInfoParagraph.textContent = "Selected file: " + selectedFileName;
+        } else {
+          fileInfoParagraph.textContent =
+            "Supported file types: .apk, .ipa, .c, .cpp, .java, ...";
+        }
+      }
+
+      function addProject(event) {
+        event.preventDefault();
+
+        // Get form field values
+        const name = document.getElementById("name").value;
+        const visibility = document.querySelector(
+          'input[name="visibility"]:checked'
+        ).value;
+        const description = document.querySelector("textarea").value;
+        const projectTag = document.getElementById("tag").value;
+        const githubLink = document.getElementById("github").value;
+        const liveLink = document.getElementById("live").value;
+
+        // Get the file inputs
+        const thumbnailFile = Thumbnail;
+        const outcomeFile = document.getElementById("projectFile").files[0];
+
+        // Get all file inputs (excluding Thumbnail and projectFile)
+
+        // Check if both files are defined
+        if (!thumbnailFile || !outcomeFile) {
+          console.error("Files are not defined.");
+          return;
+        }
+
+        // Create a FormData object
+        const formData = new FormData();
+
+        // Append form fields
+        formData.append("name", name);
+        formData.append("visibility", visibility);
+        formData.append("description", description);
+        formData.append("tag", projectTag);
+        formData.append("github", githubLink);
+        formData.append("live", liveLink);
+
+        // Append the Thumbnail and outcomeFile files to the FormData object
+        formData.append("Thumbnail", thumbnailFile);
+        formData.append("projectFile", outcomeFile);
+        const apiUrl = "http://localhost/TERMWORK/BackEnd/APIS/Project/Add.php";
+
+        // Use $.ajax to send the FormData
+        $.ajax({
+          url: apiUrl,
+          type: "POST",
+          data: formData,
+          processData: false, // To prevent jQuery from processing the FormData object
+          contentType: false, // To prevent jQuery from setting the content type
+          enctype: "multipart/form-data", // Specify multipart/form-data
+          success: function (data) {
+            // Handle the API response here
+            console.log(data);
+          },
+          error: function (error) {
+            // Handle errors here
+            console.error("Error:", error);
+          },
+        });
+      }
+    </script>
+  </body>
 </html>
