@@ -1150,16 +1150,25 @@
           url: apiUrl,
           type: "POST",
           data: formData,
-          processData: false, // To prevent jQuery from processing the FormData object
-          contentType: false, // To prevent jQuery from setting the content type
-          enctype: "multipart/form-data", // Specify multipart/form-data
+          processData: false,
+          contentType: false,
+          enctype: "multipart/form-data",
           success: function (data) {
-            // Handle the API response here
-            console.log(data);
+            Swal.fire({
+              icon: data.status,
+              title: data.status,
+              text: data.message,
+            });
           },
           error: function (error) {
             // Handle errors here
             console.error("Error:", error);
+            // Display an error Swal popup
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "An error occurred while uploading files. Please try again later.",
+            });
           },
         });
       }
