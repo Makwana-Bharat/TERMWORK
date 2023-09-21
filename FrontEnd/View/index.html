@@ -37,7 +37,8 @@
     <!--Custom Js-->
     <!--<script src="./View/assets/js/main.js"></script>-->
     <script src="./View/assets/js/Auth/register.js"></script>
-    <script src="./View/assets/js/Auth/forgotPass.js"></script>
+    <!--<script src="./View/assets/js/Auth/forgotPass.js"></script>-->
+    <!--<script src="./View/assets/js/Auth/verify.js"></script>-->
     <!--<script src="./View/assets/js/Auth/login.js"></script>-->
   </head>
 
@@ -357,46 +358,231 @@
         }
       };
     </script>
-
-    <!--Login-->
     <script>
+      const URL = "https://stereobatic-binder.000webhostapp.com";
+
+      /* === Change Password Form === */
+      const ChangePass = () => {
+        Swal.fire({
+          html: `
+          <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700 p-4" style="width:450px">
+          <div class="w-full h-full flex justify-center items-center flex-col" id="personalInfo">
+            <h1
+              class="mb-10 text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white text-center"
+              style="letter-spacing: 2px"
+            >
+              Forgot Password
+            </h1>
+            <form class="space-y-4 md:space-y-6 w-96" action="#"  >
+              <div>
+                <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
+                <input type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+              </div>
+              <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
+                <input type="password" name="password" id="password" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******" required="">
+              </div>
+              <div>
+                <label for="cpassword" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Confirm Password</label>
+                <input type="password" name="cpassword" id="cpassword" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="******" required="">
+              </div>
+              <button type="submit" class="w-26 float-right text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+              `,
+          padding: 0,
+          width: "450px",
+          showConfirmButton: false,
+        });
+      };
+      /* === Verify OTP ===*/
+      const verify = async (event) => {
+        event.preventDefault();
+        const otpInput = event.target.otp.value;
+        console.log(otpInput);
+        await fetch(`${URL}/PHP/Verify_OTP.php`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `UserOTP=${otpInput}`,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            ChangePass();
+          });
+      };
+
+      /* === OTP fill Form === */
+      const Verification = () => {
+        Swal.fire({
+          html: `
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+          <div class="w-full h-full" id="personalInfo">
+            <h1
+              class="mb-10 text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white text-center"
+              style="letter-spacing: 2px"
+            >
+              Forgot Password
+            </h1>
+            <h3
+              class="font-bold mb-4 md:text-md dark:text-slate-100 tracking-widest text-center"
+            >
+              Enter Verification Code
+            </h3>
+            <h2 class="md:text-xs dark:text-slate-300 tracking-widest italic text-center w-full leading-7"
+              >we will send One Time Password on <br>
+              <strong class="text-center leading-7">abcx@ffdfd.csc</strong>,<br />
+              to proceed fill the otp</h2>
+            <form class="space-y-4 md:space-y-6" action="#" onsubmit="verify(event)">
+              <div class="h-full">
+                <div class="w-full flex pt-12">
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box1 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box2 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box3 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box4 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box5 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                  <div
+                    style="width: 50px; height: 50px"
+                    class="otp-box6 bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 m-2 flex justify-center items-center"
+                  >
+                    <span class="otp-box text-2xl">0</span>
+                  </div>
+                </div>
+                <input
+                  type="numbers"
+                  name="otp"
+                  id="otp"
+                  placeholder="rr"
+                  class="w-full relative bottom-14 p-3 opacity-0"
+                  oninput="fillOTPBoxes()"
+                  maxlength="6"
+                  required=""
+                />
+              </div>
+              <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Forgot Password</button>
+            </form>
+          </div>
+        </div>
+      </div>
+            `,
+          padding: 0,
+          width: "450px",
+          showConfirmButton: false,
+        });
+      };
+
+      /* === Handle Send OTP === */
+      const sendOTP = async (event) => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        await fetch(`${URL}/PHP/SendOTP.php`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `EMAIL=${email}`,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              Verification();
+            }
+          });
+      };
+      /* === Send OTP === */
+      const ForgotPass = () => {
+        Swal.fire({
+          html: `
+          <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700 p-4" style="width:450px">
+          <div class="w-full h-full flex justify-center items-center flex-col" id="personalInfo">
+            <h1
+              class="mb-10 text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white text-center"
+              style="letter-spacing: 2px"
+            >
+              Forgot Password
+            </h1>
+            <form class="space-y-4 md:space-y-6 w-96" action="#" onsubmit="sendOTP(event)" >
+              <div>
+                <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
+                <input type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+              </div>
+              <button type="submit" class="w-26 float-right text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Send OTP</button>
+            </form>
+          </div>
+        </div>
+      </div>
+              `,
+          padding: 0,
+          width: "450px",
+          showConfirmButton: false,
+        });
+      };
+      /* === Login === */
       const showLoginModal = () => {
         currStep = 1;
         Swal.fire({
           html: `
-                <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:450px">
-                      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                          <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white" style="letter-spacing:1px">
-                              Sign in to your account
-                          </h1>
-                          <form class="space-y-4 md:space-y-6" method="post" onsubmit="Login(event)">
-                              <div>
-                                  <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
-                                  <input type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
-                              </div>
-                              <div>
-                                  <label for="password" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Password</label>
-                                  <input type="password" name="password" id="password" placeholder="••••••••" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-                              </div>
-                              <div class="flex items-center justify-between">
-                                  <div class="flex items-start">
-                                      <div class="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-neutral-300 rounded bg-neutral-50 focus:ring-3 focus:ring-blue-300 dark:bg-neutral-700 dark:border-neutral-600 dark:focus:ring-blue-600 dark:ring-offset-neutral-800" required="">
+                        <div class=" bg-white rounded-lg shadow dark:border dark:bg-neutral-800 dark:border-neutral-700" style="width:450px">
+                              <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                  <h1 class="text-xl font-bold leading-tight tracking-tight text-neutral-900 md:text-2xl dark:text-white" style="letter-spacing:1px">
+                                      Sign in to your account
+                                  </h1>
+                                  <form class="space-y-4 md:space-y-6" method="post" onsubmit="Login(event)">
+                                      <div>
+                                          <label for="email" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Your email</label>
+                                          <input type="email" name="email" id="email" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
                                       </div>
-                                      <div class="ml-3 text-sm">
-                                        <label for="remember" class="text-neutral-500 dark:text-neutral-300">Remember me</label>
+                                      <div>
+                                          <label for="password" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">Password</label>
+                                          <input type="password" name="password" id="password" placeholder="••••••••" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                                       </div>
-                                  </div>
-                                  <p class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="ForgotPass()">Forgot password?</p>
+                                      <div class="flex items-center justify-between">
+                                          <div class="flex items-start">
+                                              <div class="flex items-center h-5">
+                                                <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-neutral-300 rounded bg-neutral-50 focus:ring-3 focus:ring-blue-300 dark:bg-neutral-700 dark:border-neutral-600 dark:focus:ring-blue-600 dark:ring-offset-neutral-800" required="">
+                                              </div>
+                                              <div class="ml-3 text-sm">
+                                                <label for="remember" class="text-neutral-500 dark:text-neutral-300">Remember me</label>
+                                              </div>
+                                          </div>
+                                          <p class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="ForgotPass()">Forgot password?</p>
+                                      </div>
+                                      <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign in</button>
+                                      <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                          Don’t have an account yet? <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="frmSignUp()">Sign up</a>
+                                      </p>
+                                  </form>
                               </div>
-                              <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign in</button>
-                              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                  Don’t have an account yet? <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500" onclick="frmSignUp()">Sign up</a>
-                              </p>
-                          </form>
-                      </div>
-                  </div>
-                `,
+                          </div>
+                        `,
           padding: 0,
           width: "450px",
           showConfirmButton: false,

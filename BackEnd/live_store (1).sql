@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Sep 19, 2023 at 07:24 PM
+-- Generation Time: Sep 20, 2023 at 09:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -25,30 +25,36 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addProject` (IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000), IN `p_screenshotFileName` VARCHAR(1000), IN `p_projectFileName` VARCHAR(1000), IN `p_uid` VARCHAR(20))   BEGIN
-    DECLARE categoryID INT;
-    DECLARE projectID INT;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addProject` (IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000), IN `p_screenshots` VARCHAR(1000), IN `p_projectFileName` VARCHAR(1000), IN `p_uid` VARCHAR(20))   BEGIN
+    DECLARE categoryID VARCHAR(20);
+    DECLARE projectID VARCHAR(20);
+
+    DECLARE myGeneratedID VARCHAR(20); -- Declare a variable for your generated ID
+
+    SET myGeneratedID = generateRandomId(); -- Store your generated ID
 
     -- Insert into category table if necessary and retrieve the CID
     INSERT IGNORE INTO category (`CID`, `Name`)
-    VALUES (generateRandomId(), p_projectTag)
+    VALUES (myGeneratedID, p_projectTag)
     ON DUPLICATE KEY UPDATE `CID` = `CID`;
 
     SELECT `CID` INTO categoryID FROM category WHERE `Name` = p_projectTag;
 
     -- Insert into project table
-    INSERT INTO project (`UID`, `PID`, `NAME`, `Thumbnail`, `isVisible`)
-    VALUES (p_uid, generateRandomId(), p_projectName, CONCAT('uploads/', p_screenshotFileName), 1);
+    INSERT INTO project (`UID`, `PID`, `NAME`,  `isVisible`)
+    VALUES (p_uid, myGeneratedID, p_projectName, p_visibility);
 
-    SELECT LAST_INSERT_ID() INTO projectID;
+    SET projectID = myGeneratedID; -- Use your generated ID as the project ID
 
     -- Insert into project_meta table
-    INSERT INTO project_meta (`PID`, `Download`, `Repolink`, `LiveLink`, `Screenshot`)
-    VALUES (projectID, CONCAT('uploads/', p_projectFileName), p_githubLink, p_liveLink, projectID);
+    INSERT INTO project_meta (`PID`,`MID`, `Download`, `Repolink`, `LiveLink`, `Screenshot`)
+    VALUES (projectID, generateRandomId(),p_githubLink, p_githubLink, p_liveLink, p_screenshots);
 
     -- Insert into project_tag table
     INSERT INTO project_tag (`PID`, `CID`, `TID`)
     VALUES (projectID, categoryID, projectID);
+    
+    -- Now, projectID is set to your generated ID and can be used in subsequent queries
 END$$
 
 --
@@ -85,7 +91,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`CID`, `Name`) VALUES
-('1021', 'React Native,PHP');
+('XG7CX99BG1LLYN38N7VG', 'React Native');
 
 -- --------------------------------------------------------
 
@@ -97,7 +103,6 @@ CREATE TABLE `project` (
   `UID` varchar(20) NOT NULL,
   `PID` varchar(20) NOT NULL,
   `NAME` varchar(50) NOT NULL,
-  `Thumbnail` varchar(1000) NOT NULL,
   `isVisible` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,8 +110,8 @@ CREATE TABLE `project` (
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`UID`, `PID`, `NAME`, `Thumbnail`, `isVisible`) VALUES
-('1121', '0', 'Algorithm Visualization', 'uploads/img1.png,img2.png', 1);
+INSERT INTO `project` (`UID`, `PID`, `NAME`, `isVisible`) VALUES
+('1121', 'XG7CX99BG1LLYN38N7VG', 'Algorith VIsualization', 0);
 
 -- --------------------------------------------------------
 
@@ -128,7 +133,7 @@ CREATE TABLE `project_meta` (
 --
 
 INSERT INTO `project_meta` (`PID`, `MID`, `Download`, `Repolink`, `LiveLink`, `Screenshot`) VALUES
-('0', '0', 'uploads/avl.apk', 'https://github/bharat/avl.git', '', 0);
+('XG7CX99BG1LLYN38N7VG', '', 'https://bharat/fdfd.git', 'https://bharat/fdfd.git', '', 3);
 
 -- --------------------------------------------------------
 
@@ -141,6 +146,13 @@ CREATE TABLE `project_tag` (
   `CID` varchar(20) NOT NULL,
   `TID` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project_tag`
+--
+
+INSERT INTO `project_tag` (`PID`, `CID`, `TID`) VALUES
+('XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG');
 
 -- --------------------------------------------------------
 
@@ -173,7 +185,8 @@ INSERT INTO `user` (`UID`, `Username`, `Password`, `Email`, `GitHub`, `LinkedIn`
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`CID`);
+  ADD PRIMARY KEY (`CID`),
+  ADD UNIQUE KEY `Name` (`Name`);
 
 --
 -- Indexes for table `project`

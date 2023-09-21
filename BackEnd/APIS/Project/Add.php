@@ -1,26 +1,4 @@
 <?php
-function validate($key, $file)
-{
-    $name = $key;
-    $size = $file["size"];
-    $isProjectFile = (strpos($name, "projectFile") !== false);
-
-    if ($isProjectFile) {
-        if ($size > 1024 * 1024 * 1024) {
-            return false;
-        }
-    } else {
-        $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
-        $fileExtension = pathinfo($name, PATHINFO_EXTENSION);
-
-        // if (!in_array($fileExtension, $allowedExtensions) || $size > 1024 * 1024 * 10) {
-        //     return false;
-        // }
-    }
-
-    return true;
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once '../connection.php';
 
@@ -36,21 +14,67 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Create the directory if it doesn't exist
     if (!is_dir($path . "screenshots/")) {
-        mkdir($path, 0777, true);
+        mkdir($path . "screenshots/", 0777, true);
     }
 
     $uploadStatus = [];
+    $status = true;
+    $screenshotsCount = 0; // Initialize the screenshots count
 
     foreach ($_FILES as $key => $file) {
         $file_path = "./upload/$uid/$name/$key";
-        move_uploaded_file($file["tmp_name"], $file_path . "." . pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (move_uploaded_file($file["tmp_name"], $file_path . "." . pathinfo($file['name'], PATHINFO_EXTENSION))) {
+            if (strpos($key, "screenshot") !== false) {
+                // Increment the screenshots count for screenshot files
+                $screenshotsCount++;
+            }
+            $uploadStatus[] = [
+                "filename" => $file["name"],
+                "status" => "success",
+            ];
+        } else {
+            $status = false;
+            $uploadStatus[] = [
+                "filename" => $file["name"],
+                "status" => "fail",
+            ];
+        }
     }
 
-    $response = [
-        "status" => "success",
-        "message" => "Files uploaded successfully",
-        "uploads" => $uploadStatus,
-    ];
+    if ($status) {
+        // Assuming you have a database connection already established in 'connection.php'
+        // Define your procedure call
+        $procedureCall = "CALL addProject(:p_projectName, :p_visibility, :p_description, :p_projectTag, :p_githubLink, :p_liveLink, :p_screenshots, :p_projectFileName, :p_uid)";
+
+        // Prepare the statement
+        $stmt = $pdo->prepare($procedureCall);
+
+        // Bind the parameters
+        $stmt->bindParam(':p_projectName', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':p_visibility', $visibility, PDO::PARAM_STR);
+        $stmt->bindParam(':p_description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':p_projectTag', $projectTag, PDO::PARAM_STR);
+        $stmt->bindParam(':p_githubLink', $githubLink, PDO::PARAM_STR);
+        $stmt->bindParam(':p_liveLink', $liveLink, PDO::PARAM_STR);
+        $stmt->bindParam(':p_screenshots', $screenshotsCount, PDO::PARAM_INT); // Send the screenshots count
+        $stmt->bindParam(':p_projectFileName', $name, PDO::PARAM_STR); // Assuming the project file name is the same as the project name
+        $stmt->bindParam(':p_uid', $uid, PDO::PARAM_STR);
+
+        // Execute the stored procedure
+        $stmt->execute();
+
+        $response = [
+            "status" => "success",
+            "message" => "Files uploaded successfully and stored in the database",
+            "uploads" => $uploadStatus,
+        ];
+    } else {
+        $response = [
+            "status" => "fail",
+            "message" => "Some files failed to upload",
+            "uploads" => $uploadStatus,
+        ];
+    }
 
     echo json_encode($response);
 } else {
