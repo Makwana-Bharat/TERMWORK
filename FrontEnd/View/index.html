@@ -398,21 +398,24 @@
         });
       };
       /* === Verify OTP ===*/
-      const verify = async (event) => {
+      const verify = (event) => {
         event.preventDefault();
         const otpInput = event.target.otp.value;
         console.log(otpInput);
-        await fetch(`${URL}/PHP/Verify_OTP.php`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `UserOTP=${otpInput}`,
-        })
-          .then((response) => response.json())
-          .then((data) => {
+
+        $.ajax({
+          url: `${URL}/PHP/Verify_OTP.php`,
+          type: "POST",
+          data: { UserOTP: otpInput },
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
             ChangePass();
-          });
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.error("AJAX request failed:", textStatus, errorThrown);
+          },
+        });
       };
 
       /* === OTP fill Form === */
@@ -503,19 +506,21 @@
       const sendOTP = async (event) => {
         event.preventDefault();
         const email = event.target.email.value;
-        await fetch(`${URL}/PHP/SendOTP.php`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `EMAIL=${email}`,
-        })
-          .then((response) => response.json())
-          .then((data) => {
+        $.ajax({
+          url: `${URL}/PHP/SendOTP.php`,
+          type: "POST",
+          data: { EMAIL: email },
+          dataType: "json",
+          success: function (data) {
             if (data.status === "success") {
+              console.log(data);
               Verification();
             }
-          });
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.error("AJAX request failed:", textStatus, errorThrown);
+          },
+        });
       };
       /* === Send OTP === */
       const ForgotPass = () => {

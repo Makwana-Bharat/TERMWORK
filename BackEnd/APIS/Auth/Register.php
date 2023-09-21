@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         isset($requestData->Username)
         && isset($requestData->Password)
         && isset($requestData->Email)
-        && isset($requestData->LinkedIn)
+        && isset($requestData->GitHub)
         && isset($requestData->Bio)
     ) {
         // Sanitize and validate input
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Missing required fields in the request
         $response = array(
             'success' => false,
-            'message' => 'All required fields are mandatory'
+            'message' => 'All required fields are mandatory',
         );
         echo json_encode($response);
     }

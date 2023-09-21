@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Sep 20, 2023 at 09:24 PM
+-- Generation Time: Sep 21, 2023 at 10:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -52,9 +52,52 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addProject` (IN `p_projectName` VAR
 
     -- Insert into project_tag table
     INSERT INTO project_tag (`PID`, `CID`, `TID`)
-    VALUES (projectID, categoryID, projectID);
+    VALUES (projectID, categoryID, generateRandomId());
     
     -- Now, projectID is set to your generated ID and can be used in subsequent queries
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProject` (IN `p_projectID` VARCHAR(20))   BEGIN
+    DECLARE categoryID VARCHAR(20);
+
+    DELETE FROM project_tag WHERE `PID` = p_projectID;
+
+    DELETE FROM project WHERE `PID` = p_projectID;
+
+    SELECT COUNT(*) INTO categoryID FROM project_tag WHERE `CID` = categoryID;
+
+    IF categoryID IS NOT NULL AND categoryID != '' THEN
+        DELETE FROM category WHERE `CID` = categoryID;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProject` (IN `p_projectID` VARCHAR(20), IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000))   BEGIN
+    DECLARE categoryID VARCHAR(20);
+
+    -- Update project information
+    UPDATE project
+    SET `NAME` = p_projectName,
+        `isVisible` = p_visibility
+    WHERE `PID` = p_projectID;
+
+    -- Update project description in project_meta table
+    UPDATE project_meta
+    SET `Download` = p_githubLink,
+        `LiveLink` = p_liveLink
+    WHERE `PID` = p_projectID;
+
+    -- Update project tag (category)
+    -- Insert into category table if necessary and retrieve the CID
+    INSERT IGNORE INTO category (`CID`, `Name`)
+    VALUES (generateRandomId(), p_projectTag)
+    ON DUPLICATE KEY UPDATE `CID` = `CID`;
+
+    SELECT `CID` INTO categoryID FROM category WHERE `Name` = p_projectTag;
+
+    -- Update project tag in project_tag table
+    UPDATE project_tag
+    SET `CID` = categoryID
+    WHERE `PID` = p_projectID;
 END$$
 
 --
@@ -91,6 +134,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`CID`, `Name`) VALUES
+('ZPA0ZIFB10KKS2PYG4Y3', 'React'),
 ('XG7CX99BG1LLYN38N7VG', 'React Native');
 
 -- --------------------------------------------------------
@@ -103,15 +147,18 @@ CREATE TABLE `project` (
   `UID` varchar(20) NOT NULL,
   `PID` varchar(20) NOT NULL,
   `NAME` varchar(50) NOT NULL,
-  `isVisible` tinyint(1) NOT NULL DEFAULT 1
+  `isVisible` tinyint(1) NOT NULL DEFAULT 1,
+  `rating` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`UID`, `PID`, `NAME`, `isVisible`) VALUES
-('1121', 'XG7CX99BG1LLYN38N7VG', 'Algorith VIsualization', 0);
+INSERT INTO `project` (`UID`, `PID`, `NAME`, `isVisible`, `rating`) VALUES
+('1121', 'XG7CX99BG1LLYN38N7VG', 'Algorith VIsualization', 0, 0),
+('1121', 'ZPA0ZIFB10KKS2PYG4Y3', 'Cultivator', 0, 0),
+('1121', 'ZRI1EJ9F2SFHUHLAEWZX', 'Vibor', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -133,7 +180,9 @@ CREATE TABLE `project_meta` (
 --
 
 INSERT INTO `project_meta` (`PID`, `MID`, `Download`, `Repolink`, `LiveLink`, `Screenshot`) VALUES
-('XG7CX99BG1LLYN38N7VG', '', 'https://bharat/fdfd.git', 'https://bharat/fdfd.git', '', 3);
+('XG7CX99BG1LLYN38N7VG', '', 'https://bharat/fdfd.git', 'https://bharat/fdfd.git', '', 3),
+('ZPA0ZIFB10KKS2PYG4Y3', 'C5GK85QX7XQMN257E2TL', 'https://bharat/fdfd.git', 'https://bharat/fdfd.git', '', 6),
+('ZRI1EJ9F2SFHUHLAEWZX', 'DUTCW87Z4AU1EOV19ZTX', 'https://bharat/fdfd.git', 'https://bharat/fdfd.git', '', 3);
 
 -- --------------------------------------------------------
 
@@ -152,7 +201,9 @@ CREATE TABLE `project_tag` (
 --
 
 INSERT INTO `project_tag` (`PID`, `CID`, `TID`) VALUES
-('XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG');
+('ZRI1EJ9F2SFHUHLAEWZX', 'ZPA0ZIFB10KKS2PYG4Y3', 'T3Q31NSS9PELLT2KF30E'),
+('XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG', 'XG7CX99BG1LLYN38N7VG'),
+('ZPA0ZIFB10KKS2PYG4Y3', 'ZPA0ZIFB10KKS2PYG4Y3', 'ZPA0ZIFB10KKS2PYG4Y3');
 
 -- --------------------------------------------------------
 
@@ -175,7 +226,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UID`, `Username`, `Password`, `Email`, `GitHub`, `LinkedIn`, `Bio`) VALUES
-('1121', 'Bharat', '$2y$10$MQU3vDgoN10.JxyJ1m9UQOEqFy.Jg3D8tmHdZUAAkcpGFRwkbbLfi', '2018bharatmakwana@gmail.com', 'cdf', 'cfsd', 'dsdfds');
+('1121', 'Bharat', '$2y$10$MQU3vDgoN10.JxyJ1m9UQOEqFy.Jg3D8tmHdZUAAkcpGFRwkbbLfi', '2018bharatmakwana@gmail.com', 'cdf', 'cfsd', 'dsdfds'),
+('ydvspQVKF4KgGub4HI3M', 'john_doe', '$2y$10$AStNXHz0AnxSORKOHKdvH.5WrppeAbTeaW/nlGXzDeIzYrfyIDw7y', 'john.doe@example.com', NULL, 'https://www.linkedin.com/in/johndoe', 'A software developer');
 
 --
 -- Indexes for dumped tables
