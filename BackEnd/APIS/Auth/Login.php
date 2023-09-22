@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = $requestData->password;
 
         // Query to fetch user data by email
-        $sql = "SELECT * FROM `user` WHERE `Email` = :email";
+        $sql = "SELECT * FROM `user_credentials` WHERE `EMAIL` = :email";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if a user with the provided email exists
         if ($user) {
             // Verify the password (you should use password_hash and password_verify for secure password handling)
-            if (password_verify($password, $user['Password'])) {
+            if (password_verify($password, $user['PASSWORD'])) {
                 // Password is correct, generate a response
                 $response = array(
                     'success' => true,
