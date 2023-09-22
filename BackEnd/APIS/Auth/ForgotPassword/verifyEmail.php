@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sqlUpdate = "UPDATE `user_credentials` SET `isVerify` = 1, `OTP` = :otp WHERE `EMAIL` = :email";
 
             // Prepare the SQL statement
-            $stmt = $pdo->prepare($sql);
+            $stmt = $pdo->prepare($sqlUpdate);
 
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':otp', $otp, PDO::PARAM_STR);

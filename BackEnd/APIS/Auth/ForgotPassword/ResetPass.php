@@ -28,36 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($response);
             exit;
         }
-            $sql = "UPDATE  `user_credentials` SET `PASSWORD`= :password WHERE EMAIL=:email";
+        $sql = "UPDATE  `user_credentials` SET `PASSWORD`= :password WHERE EMAIL=:email";
 
-            // Prepare the SQL statement
-            $stmt = $pdo->prepare($sql);
+        // Prepare the SQL statement
+        $stmt = $pdo->prepare($sql);
 
-            // Bind the parameters to the placeholders
-            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        // Bind the parameters to the placeholders
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
-            // Execute the query
-            if ($stmt->execute()) {
-                // Registration successful
-                $response = array(
-                    'success' => true,
-                    'message' => 'Password is updated...',
-                );
-                echo json_encode($response);
-            } else {
-                // Registration failed
-                $response = array(
-                    'success' => false,
-                    'message' => 'User Credentials Updation failed' . $otp,
-                );
-                echo json_encode($response);
-            }
+        // Execute the query
+        if ($stmt->execute()) {
+            // Registration successful
+            $response = array(
+                'success' => true,
+                'message' => 'Password is updated...',
+            );
+            echo json_encode($response);
         } else {
-            // Failed to extract OTP from the OTP API response
+            // Registration failed
             $response = array(
                 'success' => false,
-                'message' => 'Failed to extract OTP from the OTP API response',
+                'message' => 'User Credentials Updation failed' . $otp,
             );
             echo json_encode($response);
         }

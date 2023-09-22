@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Fetch OTP from the database
         $sqlFetchOTP = "SELECT `OTP` FROM `user_credentials` WHERE `EMAIL` = :email";
         $stmtFetchOTP = $pdo->prepare($sqlFetchOTP);
-        $stmtFetchOTP->bindParam(':uid', $uid, PDO::PARAM_STR);
+        $stmtFetchOTP->bindParam(':email', $email, PDO::PARAM_STR);
         $stmtFetchOTP->execute();
         $fetchedOTP = $stmtFetchOTP->fetchColumn();
 
@@ -36,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // OTP verification successful
                 $response = array(
                     'success' => true,
-                    'message' => 'OTP Verification Done..',
-                    'UID' => $uid
+                    'message' => 'OTP Verification Done..'
                 );
                 echo json_encode($response);
             } else {
