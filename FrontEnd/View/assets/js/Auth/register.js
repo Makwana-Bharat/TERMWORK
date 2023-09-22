@@ -46,7 +46,15 @@ let currStep = 1;
               if (currStep <= 2) {
                 UID = response.UID;
               }
-              alert(response.message);
+              if (response.message == "Registration Success..")
+              Swal.fire({
+                icon: "success",
+                title: response.message,
+                showConfirmButton: false,
+                timer: 1500,
+              })
+              else
+                alert(response.message);
             } else currStep--;
           },
           error: function (error) {

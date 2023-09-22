@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if the JSON data is valid
     if ($requestData !== null) {
-        $uid = $requestData->uid;
         $email = filter_var($requestData->email, FILTER_SANITIZE_EMAIL);
         $password = password_hash($requestData->password, PASSWORD_DEFAULT);
         $cpassword = $requestData->confirm_password;
@@ -29,67 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode($response);
             exit;
         }
-
-        // Define the URL of the OTP API
-        $otpApiUrl = 'http://localhost/TERMWORK/BackEnd/APIS/Auth/SendOTP.php'; // Modify the URL as needed
-
-        // Prepare the data to send to the OTP API
-        $postData = array(
-            'uid' => $uid,
-            'EMAIL' => $email,
-        );
-
-        // Initialize cURL session
-        $ch = curl_init();
-
-        // Set cURL options
-        curl_setopt($ch, CURLOPT_URL, $otpApiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-
-        // Execute cURL session and retrieve the OTP API response
-        $otpApiResponse = curl_exec($ch);
-
-        // Close cURL session
-        curl_close($ch);
-
-        // Check if the OTP API response is valid JSON
-        $otpData = json_decode($otpApiResponse);
-        if ($otpData !== null && isset($otpData->OTP)) {
-            $otp = $otpData->OTP;
-
-            // Define the SQL query with placeholders for parameters
-            $sql = "INSERT INTO `user_credentials`(`UID`, `EMAIL`, `PASSWORD`, `isVerify`, `OTP`) VALUES (:uid, :email, :password, :isVerify, :otp)";
+            $sql = "UPDATE  `user_credentials` SET `PASSWORD`= :password WHERE EMAIL=:email";
 
             // Prepare the SQL statement
             $stmt = $pdo->prepare($sql);
 
             // Bind the parameters to the placeholders
-            $stmt->bindParam(':uid', $uid, PDO::PARAM_STR);
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-
-            // Bind isVerify with a default value of 0
-            $isVerify = 0;
-            $stmt->bindParam(':isVerify', $isVerify, PDO::PARAM_INT);
-
-            // Bind the extracted OTP
-            $stmt->bindParam(':otp', $otp, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
             // Execute the query
             if ($stmt->execute()) {
                 // Registration successful
                 $response = array(
                     'success' => true,
-                    'message' => 'Check your mailbox for otp',
+                    'message' => 'Password is updated...',
                 );
                 echo json_encode($response);
             } else {
                 // Registration failed
                 $response = array(
                     'success' => false,
-                    'message' => 'User Credentials Creation failed' . $otp,
+                    'message' => 'User Credentials Updation failed' . $otp,
                 );
                 echo json_encode($response);
             }
