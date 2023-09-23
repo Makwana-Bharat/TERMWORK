@@ -30,7 +30,7 @@ let currStep = 1;
       let UID = "";
 
       const InsertUser = async (user) => {
-        const endpointURL = `${URL}${ApiEndPointAuth[currStep - 1]}`;
+        const endpointURL = `${URL}Register/${ApiEndPointAuth[currStep - 1]}`;
 
         if (currStep > 1) {
           user.uid = UID;

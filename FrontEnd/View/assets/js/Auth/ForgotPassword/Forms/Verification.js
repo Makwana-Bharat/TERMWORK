@@ -1,6 +1,7 @@
-const ForgotPass = () => {
-    Swal.fire({
-        html: `
+/* === OTP fill Form === */
+  const Verification = (email) => {
+        Swal.fire({
+          html: `
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <div class="w-full h-full" id="personalInfo">
             <h1
@@ -18,7 +19,7 @@ const ForgotPass = () => {
               >we will send One Time Password on <br>
               <strong class="text-center leading-7">abcx@ffdfd.csc</strong>,<br />
               to proceed fill the otp</h2>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <form class="space-y-4 md:space-y-6" action="#" onsubmit="verify(event,'${email}')">
               <div class="h-full">
                 <div class="w-full flex pt-12">
                   <div
@@ -76,7 +77,7 @@ const ForgotPass = () => {
       </div>
             `,
           padding: 0,
-      width: "450px",
-      showConfirmButton: false,
-    }); 
-}
+          width: "450px",
+          showConfirmButton: false,
+        });
+      };

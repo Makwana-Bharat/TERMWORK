@@ -1,22 +1,22 @@
 const LoadApps = () => {
-    //Filter Tags
-    let tags = [
-        "android",
-        "ios",
-        "Web",
-        "React",
-        "React Native",
-        "C",
-        "C++",
-        "Java",
-        "Mern",
-        "Marn",
-        "UI/UX",
-        "Lib",
-        "API",
-        "Shell Script",
-    ];
-    var $activeDiv = `<div
+        //Filter Tags
+        let tags = [
+          "android",
+          "ios",
+          "Web",
+          "React",
+          "React Native",
+          "C",
+          "C++",
+          "Java",
+          "Mern",
+          "Marn",
+          "UI/UX",
+          "Lib",
+          "API",
+          "Shell Script",
+        ];
+        var $activeDiv = `<div
                   style="
                     box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
                     background: rgba(0, 0, 0, 0.5);
@@ -27,9 +27,9 @@ const LoadApps = () => {
                 >
                   <p>All</p>
                 </div>`;
-    $(".filter").append($activeDiv);
-    tags.forEach((tag) => {
-        var $tagDiv = `<div
+        $(".filter").append($activeDiv);
+        tags.forEach((tag) => {
+          var $tagDiv = `<div
                       style="
                           box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
                           background: rgba(255, 255, 255, 0.05);
@@ -40,71 +40,70 @@ const LoadApps = () => {
                   >
                       <p>${tag}</p>
                   </div>`;
-        $(".filter").append($tagDiv);
-    });
+          $(".filter").append($tagDiv);
+        });
 
-    //load App
-    var appData = {
-        mostRated: [
-        {
-              id:101,
-                Thumbnail: "https://wallpapercave.com/wp/wp3144352.jpg",
-                appName: "Free Fire",
-            DownloadLink: "",
-                rating:"5.0"
-            },
-        {
-              id:102,
-                Thumbnail:
-                    "https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg",
-                appName: "Clash of Empire",
+        //load App
+        var appData = {
+          mostRated: [
+            {
+              id: 101,
+              Thumbnail: "https://wallpapercave.com/wp/wp3144352.jpg",
+              appName: "Free Fire",
               DownloadLink: "",
-                rating:"4.5"
+              rating: "5.0",
             },
-        {
-              id:103,
-                Thumbnail:
-                    "https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg",
-                appName: "Farming Simulation - 2023",
+            {
+              id: 102,
+              Thumbnail:
+                "https://e1.pxfuel.com/desktop-wallpaper/979/291/desktop-wallpaper-landscape-castle-clash.jpg",
+              appName: "Clash of Empire",
               DownloadLink: "",
-                rating:"5.0"
+              rating: "4.5",
             },
-        {
-              id:104,
-                Thumbnail:
-                    "https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg",
-                appName: "Angry Birds",
+            {
+              id: 103,
+              Thumbnail:
+                "https://wallpaperbat.com/img/221640-pure-farming-2018-ps4-review.jpg",
+              appName: "Farming Simulation - 2023",
               DownloadLink: "",
-                rating:"3.0"
+              rating: "5.0",
             },
-        ],
-        Games: [
-          {
-              id:105,
-                Thumbnail:
-                    "https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png",
-                appName: "Free Fire",
-            DownloadLink: "",
-                rating:"2.0"
-            },
-          {
-              id:106,
-                Thumbnail:
-                    "https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg",
-                appName: "Free Fire",
+            {
+              id: 104,
+              Thumbnail:
+                "https://e0.pxfuel.com/wallpapers/6/701/desktop-wallpaper-blog-angry-bird-2.jpg",
+              appName: "Angry Birds",
               DownloadLink: "",
-                rating:"5.0"
+              rating: "3.0",
             },
-        ],
-    };
+          ],
+          Games: [
+            {
+              id: 105,
+              Thumbnail:
+                "https://cdn6.aptoide.com/imgs/a/0/7/a07457f9d059715922bd0baa696456d4_icon.png",
+              appName: "Free Fire",
+              DownloadLink: "",
+              rating: "2.0",
+            },
+            {
+              id: 106,
+              Thumbnail:
+                "https://i.pinimg.com/736x/e5/c1/59/e5c159ebbf010fd33f396d5759ef17ba.jpg",
+              appName: "Free Fire",
+              DownloadLink: "",
+              rating: "5.0",
+            },
+          ],
+        };
 
-    appData.mostRated.forEach((app)=> {
-        var $appDiv = `
+        appData.mostRated.forEach((app) => {
+          var $appDiv = `
                 <div
-                      id="App${app.id}"
                       style="min-width: 460px"
                       class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
-                      onclick="showApp(${app})"
+                      onclick="showApp('${app}')"
                       >
                       <img
                         class="rounded-lg h-full w-full"
@@ -170,7 +169,7 @@ const LoadApps = () => {
                             >
                               <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                              />
+                              />ś
                             </svg>
                             <svg
                               class="w-4 h-4 text-gray-200 dark:text-gray-600"
@@ -200,11 +199,11 @@ const LoadApps = () => {
                       </div>
                     </div>
                 `;
-        $("#mostRated").append($appDiv);
-    });
+          $("#mostRated").append($appDiv);
+        });
 
-    //Other
-    var app = `<div
+        //Other
+        var app = `<div
                   class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
                 >
                   <img
@@ -214,9 +213,9 @@ const LoadApps = () => {
                   />
                   <p class="text-center w-24 flex-wrap h-12 pt-2">${appData.Games[1].appName}</p>
                 </div>`;
-          $("#Games").append(app);
-    for (let i = 0; i < 20; i++) {
-        var app = `<div
+        $("#Games").append(app);
+        for (let i = 0; i < 20; i++) {
+          var app = `<div
                 class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30"
               >
                 <img
@@ -226,6 +225,6 @@ const LoadApps = () => {
                 />
                 <p class="text-center w-24 flex-wrap h-12 pt-2">${appData.Games[0].appName}</p>
               </div>`;
-        $("#Games").append(app);
-  }
-}
+          $("#Games").append(app);
+        }
+      };
