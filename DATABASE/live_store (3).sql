@@ -116,7 +116,11 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `generateRandomId` () RETURNS VARCHAR
     RETURN randomString;
 END$$
 
+CREATE TRIGGER `categoryIDSetter` BEFORE INSERT ON `category`
+ FOR EACH ROW SET NEW.CID=generateRandomId()
+
 DELIMITER ;
+
 
 -- --------------------------------------------------------
 

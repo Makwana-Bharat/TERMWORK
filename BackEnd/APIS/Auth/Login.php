@@ -22,11 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Verify the password (you should use password_hash and password_verify for secure password handling)
             if (password_verify($password, $user['PASSWORD'])) {
                 // Password is correct, generate a response
-                $response = array(
-                    'success' => true,
-                    'message' => 'Login successful',
-                    'user' => $user
-                );
+                $sql = "SELECT * FROM `user` WHERE `UID` = :uid";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(':uid', $user['UID'], PDO::PARAM_STR);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($user)
+                    $response = array(
+                        'success' => true,
+                        'message' => 'Login successful',
+                        'user' => $user
+                    );
+                else
+                    $response = array(
+                        'success' => false,
+                        'message' => 'Incorrect password'
+                    );
                 echo json_encode($response);
             } else {
                 // Password is incorrect

@@ -12,6 +12,7 @@
           dataType: "json",
           success: (response) => {
             if (response.success) {
+              setCookie("user", JSON.stringify(response.user), 7);
               Swal.fire({
                 icon: "success",
                 title: "Login successful",
