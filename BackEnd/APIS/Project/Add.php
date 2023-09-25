@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $projectTag = $_POST["tag"];
     $githubLink = $_POST["github"];
     $liveLink = $_POST["live"];
-    $uid = $_COOKIE["UID"];
+    $uid = $_POST["UID"];
     $path = "./upload/$uid/$name/";
 
     // Create the directory if it doesn't exist
@@ -23,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     foreach ($_FILES as $key => $file) {
         $file_path = "./upload/$uid/$name/$key";
+        if (strpos($key, "screenshot") !== false) {
+            $screenshotsCount++;
+            $file_path = "./upload/$uid/$name/screenshots/$key";
+        }
         if (move_uploaded_file($file["tmp_name"], $file_path . "." . pathinfo($file['name'], PATHINFO_EXTENSION))) {
-            if (strpos($key, "screenshot") !== false) {
-                // Increment the screenshots count for screenshot files
-                $screenshotsCount++;
-            }
             $uploadStatus[] = [
                 "filename" => $file["name"],
                 "status" => "success",
@@ -42,8 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ($status) {
-        // Assuming you have a database connection already established in 'connection.php'
-        // Define your procedure call
         $procedureCall = "CALL addProject(:p_projectName, :p_visibility, :p_description, :p_projectTag, :p_githubLink, :p_liveLink, :p_screenshots, :p_projectFileName, :p_uid)";
 
         // Prepare the statement
