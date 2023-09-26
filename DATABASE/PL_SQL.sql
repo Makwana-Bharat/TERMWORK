@@ -101,7 +101,6 @@ DELIMITER ;
 
 
 
-# view 
 CREATE OR REPLACE VIEW `view_project_data` AS
 SELECT
     u.UID AS UID,
