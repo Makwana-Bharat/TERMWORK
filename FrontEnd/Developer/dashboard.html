@@ -33,6 +33,8 @@
     <!-- JQuery-->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
+    <!-- Configration -->
+    <script src="../config.js"></script>
     <!-- State Management -->
     <script src="../assets/js/Auth/COOKIE/setCookie.js"></script>
     <script src="../assets/js/Auth/COOKIE/getCookie.js"></script>
@@ -41,6 +43,8 @@
     <!-- Project -->
     <script src="./Projects/Forms/add.js"></script>
     <script src="./Projects/Handler/add.js"></script>
+    <script src="./Projects/Handler/fetch.js"></script>
+    <script src="./Projects/Handler/mostview.js"></script>
   </head>
 
   <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
@@ -122,13 +126,12 @@
       </button>
     </main>
     <script>
-      const swapScreen = () => {
-        window.location.href = "../";
-      };
+      //Screen Switching
+      const swapScreen = () => (window.location.href = "../");
 
       $(document).ready(() => {
+        /* === Check User Info === */
         const userCookie = getCookie("user");
-
         if (!userCookie) {
           window.location.href = "../";
         } else {
@@ -138,12 +141,21 @@
             if (user && user.Username) {
               $("#username").html(user.Username);
             } else {
+              alert("Invalid user data");
+              swapScreen();
               console.error("Invalid user data:", user);
             }
           } catch (error) {
+            alert("Something Wen't Wrong.. , \nPlease Clear your cookies..");
+            swapScreen();
             console.error("Error parsing user cookie:", error);
           }
         }
+
+        /* === Load Data === */
+
+        //Most View
+        console.log(mostview);
       });
     </script>
   </body>

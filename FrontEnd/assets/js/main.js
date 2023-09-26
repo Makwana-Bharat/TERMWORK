@@ -25,7 +25,8 @@ const ToggleClass = (tagId) => {
 
 const LoadApps = () => {
   //Filter Tags
-  fetchData(ApiEndPoint.Base + ApiEndPoint.Category)
+  console.log(ApiEndPoint);
+  fetchData(ApiEndPoint.Base + ApiEndPoint.Category.Add)
     .then((data) => {
       if (data.success === true) {
         var $activeDiv = `<div

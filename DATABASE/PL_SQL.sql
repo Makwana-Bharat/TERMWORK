@@ -3,7 +3,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addProject` (IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000), IN `p_screenshots` VARCHAR(1000), IN `p_projectFileName` VARCHAR(1000), IN `p_uid` VARCHAR(20))   BEGIN
+CREATE OR REPLACE PROCEDURE `addProject` (IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000), IN `p_screenshots` VARCHAR(1000), IN `p_projectFileName` VARCHAR(1000), IN `p_uid` VARCHAR(20))   BEGIN
     DECLARE categoryID VARCHAR(20);
     DECLARE projectID VARCHAR(20);
 
@@ -35,7 +35,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addProject` (IN `p_projectName` VAR
     -- Now, projectID is set to your generated ID and can be used in subsequent queries
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProject` (IN `p_projectID` VARCHAR(20))   BEGIN
+CREATE  OR REPLACE PROCEDURE `deleteProject` (IN `p_projectID` VARCHAR(20))   BEGIN
     DECLARE categoryID VARCHAR(20);
 
     DELETE FROM project_tag WHERE `PID` = p_projectID;
@@ -49,7 +49,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteProject` (IN `p_projectID` VA
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProject` (IN `p_projectID` VARCHAR(20), IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000))   BEGIN
+CREATE  OR REPLACE PROCEDURE `updateProject` (IN `p_projectID` VARCHAR(20), IN `p_projectName` VARCHAR(50), IN `p_visibility` VARCHAR(20), IN `p_description` TEXT, IN `p_projectTag` VARCHAR(100), IN `p_githubLink` VARCHAR(1000), IN `p_liveLink` VARCHAR(1000))   BEGIN
     DECLARE categoryID VARCHAR(20);
 
     -- Update project information
@@ -81,7 +81,7 @@ END$$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `generateRandomId` () RETURNS VARCHAR(20) CHARSET utf8mb4 COLLATE utf8mb4_general_ci  BEGIN
+CREATE OR REPLACE  FUNCTION `generateRandomId` () RETURNS VARCHAR(20) CHARSET utf8mb4 COLLATE utf8mb4_general_ci  BEGIN
     DECLARE characters VARCHAR(36) DEFAULT 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     DECLARE randomString VARCHAR(20) DEFAULT '';
     DECLARE i INT DEFAULT 1;
@@ -94,7 +94,31 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `generateRandomId` () RETURNS VARCHAR
     RETURN randomString;
 END$$
 
-CREATE TRIGGER `categoryIDSetter` BEFORE INSERT ON `category`
+CREATE OR REPLACE TRIGGER `categoryIDSetter` BEFORE INSERT ON `category`
  FOR EACH ROW SET NEW.CID=generateRandomId()
 
 DELIMITER ;
+
+
+
+# view 
+CREATE OR REPLACE VIEW `view_project_data` AS
+SELECT
+    u.UID AS UID,
+    p.PID AS PID,
+    mv.MID,
+    u.Username AS UserName,
+    p.NAME AS ProjectName,
+    mv.Views AS Views,
+    p.isVisible AS IsVisible,
+    p.rating AS Rating,
+    pt.CID AS CID,
+    pt.TID AS TID
+FROM
+    mostviewed mv
+INNER JOIN
+    project p ON mv.PID = p.PID
+INNER JOIN
+    user u ON p.UID = u.UID
+LEFT JOIN
+    project_tag pt ON p.PID = pt.PID;

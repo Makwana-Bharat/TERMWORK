@@ -8,8 +8,8 @@ const Login = (event) => {
     type: "POST",
     url: `${ApiEndPoint.Base}/${ApiEndPoint.Auth.Login}`,
     data: JSON.stringify(formData),
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
+    // contentType: "application/json; charset=utf-8",
+    // dataType: "json",
     success: (response) => {
       if (response.success) {
         setCookie("user", JSON.stringify(response.user), 7);
