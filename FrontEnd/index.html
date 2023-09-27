@@ -60,14 +60,25 @@
     <!-- === Login === -->
     <script src="./assets/js/Auth/Login/Handler.js"></script>
     <script src="./assets/js/Auth/Login/Form.js"></script>
+
+    <!-- === Project === -->
+    <!-- Handle Most Viewd -->
+    <script src="./assets/js/Project/fetch.js"></script>
+    <script src="./assets/js/Project/mostview.js"></script>
+
+    <script src="./assets/js/Project/FetchAll.js"></script>
   </head>
 
-  <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
+  <body
+    class="bg-neutral-200 w-screen h-screen overflow-hidden"
+    style="background: #262626 !important"
+  >
     <!-- Container  -->
-    <main class="h-screen w-screen bg-neutral-800" style="display: flex">
+    <main class="bg-neutral-800 flex w-full h-full">
       <!-- Sidenav -->
       <nav
-        class="flex flex-col justify-between items-center bg-neutral-900 w-16 h-full p-2 pb-3"
+        class="flex flex-col justify-between items-center bg-neutral-900 h-full p-2 pb-3"
+        style="width: 100px"
       >
         <div class="w-full">
           <img
@@ -86,7 +97,7 @@
         </footer>
       </nav>
       <!-- Main Section -->
-      <section class="w-full">
+      <section class="h-full m-0" style="width: calc(100%-100px)">
         <header class="flex justify-between w-11/12 px-4 py-2 fixed">
           <p
             style="font-family: 'Tilt Prism', cursive"
@@ -95,6 +106,7 @@
             LIVE STORE
           </p>
         </header>
+
         <!-- Search box-->
         <div class="p-4 pt-16 flex justify-center">
           <div
@@ -117,29 +129,24 @@
             ></i>
           </div>
         </div>
+
         <!-- Filter Tags -->
         <div
-          class="filter flex pl-32 justify-center text-slate-300 overflow-x-scroll w-full"
+          class="filter flex text-slate-300 overflow-scroll mx-5"
+          style="width: 94vw"
         ></div>
         <!-- Apps Container -->
         <div
-          class="flex-1 px-10 flex-1 w-full"
+          class="app-container flex-1 px-10 flex-1 w-full"
           style="overflow-y: auto; width: 98vw; height: 560px"
         >
           <!--Most Rated..-->
           <div class="w-full flex flex-col">
             <div class="app-bar-title w-full pb-3">
+              <h2>Most Viewed</h2>
               <span class="separator"></span>
             </div>
             <div id="mostRated" class="flex w-full overflow-x-scroll"></div>
-          </div>
-          <!--other-->
-          <div class="w-full">
-            <div class="app-bar-title w-full">
-              <h2>Game</h2>
-              <span class="separator"></span>
-            </div>
-            <div id="Games" class="flex w-full overflow-x-scroll"></div>
           </div>
         </div>
       </section>
@@ -148,8 +155,8 @@
     <!--ready Document-->
     <script>
       //handle app click
-      const showApp = (app) => {
-        alert("wrpo");
+      const showApp = (id) => {
+        window.location.href = `View.html?id=${id}`;
       };
 
       $(document).ready(() => {

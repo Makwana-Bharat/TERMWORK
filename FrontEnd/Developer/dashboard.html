@@ -43,13 +43,11 @@
     <!-- Project -->
     <script src="./Projects/Forms/add.js"></script>
     <script src="./Projects/Handler/add.js"></script>
-    <script src="./Projects/Handler/fetch.js"></script>
-    <script src="./Projects/Handler/mostview.js"></script>
   </head>
 
   <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
     <!-- Container  -->
-    <main class="h-screen w-screen bg-neutral-800" style="display: flex">
+    <main class="h-full w-full bg-neutral-800 flex">
       <!-- Sidenav -->
       <nav
         class="flex flex-col justify-between items-center bg-neutral-900 w-16 h-full p-2 pb-3"
@@ -100,9 +98,18 @@
             ></i>
           </div>
         </header>
+
+        <!-- Project Section-->
+        <main class="mt-16 mx-5">
+          <div class="w-full flex flex-col">
+            <div class="app-bar-title w-full pb-3">
+              <span class="separator"></span>
+            </div>
+            <div id="mostRated" class="flex w-full overflow-x-scroll"></div>
+          </div>
+        </main>
       </section>
 
-      <!-- Project Section-->
       <!-- Add New Project -->
       <button
         type="button"
@@ -155,7 +162,6 @@
         /* === Load Data === */
 
         //Most View
-        console.log(mostview);
       });
     </script>
   </body>

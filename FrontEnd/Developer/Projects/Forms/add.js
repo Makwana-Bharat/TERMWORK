@@ -65,13 +65,13 @@ let form = `
             </label>
             <div class="flex w-full justify-between">
               <div class="flex items-center pl-4 border border-neutral-200 rounded dark:border-neutral-700" style="width: 45%">
-                <input id="bordered-radio-1" type="radio" value="private" name="visibility" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" />
+                <input id="bordered-radio-1" type="radio" value="0" name="visibility" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" />
                 <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
                   Private
                 </label>
               </div>
               <div class="flex items-center pl-4 border border-neutral-200 rounded dark:border-neutral-700" style="width: 45%">
-                <input checked id="bordered-radio-2" type="radio" name="visibility" value="public" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" required />
+                <input checked id="bordered-radio-2" type="radio" name="1" value="public" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" required />
                 <label for="bordered-radio-2" class="w-full py-4 ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
                   Public
                 </label>

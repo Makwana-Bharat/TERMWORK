@@ -22,12 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $screenshotsCount = 0; // Initialize the screenshots count
 
     foreach ($_FILES as $key => $file) {
+
         $file_path = "./upload/$uid/$name/$key";
+        $extention = ($key != "projectFile") ? "png" : pathinfo($file['name'], PATHINFO_EXTENSION);
         if (strpos($key, "screenshot") !== false) {
             $screenshotsCount++;
             $file_path = "./upload/$uid/$name/screenshots/$key";
         }
-        if (move_uploaded_file($file["tmp_name"], $file_path . "." . pathinfo($file['name'], PATHINFO_EXTENSION))) {
+        if (move_uploaded_file($file["tmp_name"], $file_path . ".$extention")) {
             $uploadStatus[] = [
                 "filename" => $file["name"],
                 "status" => "success",

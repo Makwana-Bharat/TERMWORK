@@ -100,6 +100,9 @@ CREATE OR REPLACE TRIGGER `categoryIDSetter` BEFORE INSERT ON `category`
 DELIMITER ;
 
 
+--
+-- Most Recent View
+--
 
 CREATE OR REPLACE VIEW `view_project_data` AS
 SELECT
@@ -112,7 +115,8 @@ SELECT
     p.isVisible AS IsVisible,
     p.rating AS Rating,
     pt.CID AS CID,
-    pt.TID AS TID
+    pt.TID AS TID,
+    pm.Download AS DownloadLink
 FROM
     mostviewed mv
 INNER JOIN
@@ -120,4 +124,43 @@ INNER JOIN
 INNER JOIN
     user u ON p.UID = u.UID
 LEFT JOIN
-    project_tag pt ON p.PID = pt.PID;
+    project_tag pt ON p.PID = pt.PID
+INNER JOIN 
+    project_meta pm ON pm.PID=p.PID;
+
+
+
+--
+-- Fetch All Projects
+--
+CREATE OR REPLACE VIEW fetch_Projects_Info AS
+SELECT
+    u.UID,
+    u.Username,
+    p.PID,
+    p.NAME,
+    p.rating,
+    pm.Download,
+    pm.LiveLink,
+    pm.Repolink,
+    pm.Screenshot,
+    c.Name AS 'Tag'
+FROM
+    project AS p
+JOIN
+    USER AS u ON p.UID = u.UID
+JOIN
+    project_meta AS pm ON p.PID = pm.PID
+JOIN
+    project_tag AS pt ON p.PID = pt.PID
+JOIN
+    category AS c ON pt.CID = c.CID
+LEFT JOIN
+    mostviewed AS v ON p.PID = v.PID
+WHERE
+    p.isVisible = "1"
+    AND v.PID IS NULL
+GROUP BY
+    p.PID
+ORDER BY 
+    u.UID;

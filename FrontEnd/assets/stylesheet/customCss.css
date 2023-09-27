@@ -4,15 +4,16 @@
   }
 
   * {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
       font-family: "Bree Serif", serif;
       letter-spacing: 1px;
   }
 
   body {
       overscroll-behavior: none;
-      /* Prevents scrolling beyond the bounds of the content */
       scroll-behavior: smooth;
-      /* Enables smooth scrolling behavior */
   }
 
   div .app-bar-title {

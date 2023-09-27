@@ -1,6 +1,5 @@
-function fetchData(url) {
-  console.log(url);
-  fetch(url)
+async function fetchData(url) {
+  return await fetch(url)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
