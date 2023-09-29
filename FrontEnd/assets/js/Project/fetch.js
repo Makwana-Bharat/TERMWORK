@@ -1,4 +1,4 @@
-async function fetchData(url) {
+async function fetchProjectData(url) {
   return await fetch(url)
     .then((response) => {
       if (!response.ok) {

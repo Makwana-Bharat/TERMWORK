@@ -12,10 +12,18 @@
     <!-- Custom Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- StyleSheet-->
     <link
       href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=IM+Fell+DW+Pica&family=Tilt+Prism&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./assets/stylesheet/customCss.css"
+    />
+
     <!-- SweetAlert-->
     <link
       href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css"
@@ -26,60 +34,11 @@
     <!-- JQuery-->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <style>
-      ::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-      }
+    <!-- Configration -->
+    <script src="./config.js"></script>
 
-      * {
-        font-family: "Bree Serif", serif;
-        letter-spacing: 1px;
-      }
-
-      body {
-        overscroll-behavior: none;
-        /* Prevents scrolling beyond the bounds of the content */
-        scroll-behavior: smooth;
-        /* Enables smooth scrolling behavior */
-      }
-
-      div .app-bar-title {
-        color: white;
-        font-size: large;
-      }
-
-      div .app-bar-title h2 {
-        position: relative;
-        top: 12px;
-        left: 5px;
-      }
-
-      .separator {
-        display: inline-block;
-        width: 100%;
-        height: 0px;
-        border-bottom: 2px solid gray;
-        position: relative;
-      }
-
-      .separator::before {
-        content: "";
-        position: absolute;
-        top: -3.015px;
-        right: 100%;
-        width: 7px;
-        height: 7px;
-        transform: rotate(45deg);
-        background: gray;
-      }
-
-      .TopDownload {
-        width: 500px !important;
-        margin: 5px;
-        cursor: pointer;
-      }
-    </style>
+    <!-- Parameter Extractor -->
+    <script src="./assets/js/getParams.js"></script>
   </head>
 
   <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
@@ -113,12 +72,239 @@
             >LIVE STORE</label
           >
         </header>
-        <main class="bg-red-400 mt-16 flex flex-col" style="height: 93%">
-          <div class="flex-1 bg-green-300 flex">
-            <div class="flex-1 bg-red-500">d</div>
-            <div class="w-3/5 bg-red-900">d</div>
+        <main
+          class="mt-16 flex flex-col overflow-y-scroll mx-10"
+          style="height: 93%"
+        >
+          <div class="flex-1 flex">
+            <div
+              style="width: 540px !important; height: 300px !important"
+              class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700"
+            >
+              <img
+                class="rounded-lg h-full w-full"
+                src="https://flowbite.com/docs/images/examples/image-1@2x.jpg "
+                alt=""
+              />
+              <!--Bottom Section-->
+              <div
+                class="flex justify-between p-2 w-full h-20 items-center"
+                style="
+                  position: relative;
+                  background: linear-gradient(
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.8),
+                    rgba(0, 0, 0, 1)
+                  );
+                  bottom: 22%;
+                  backdrop-filter: blur(20);
+                "
+              >
+                <div>
+                  <label for="" class="text-white text-lg" id="appName"
+                    >dummy</label
+                  >
+                  <div class="flex items-center mt-2 mb-5">
+                    <svg
+                      class="w-4 h-4 text-yellow-300 mr-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                      />
+                    </svg>
+                    <svg
+                      class="w-4 h-4 text-yellow-300 mr-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                      />
+                    </svg>
+                    <svg
+                      class="w-4 h-4 text-yellow-300 mr-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                      />
+                    </svg>
+                    <svg
+                      class="w-4 h-4 text-yellow-300 mr-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                      />
+                      ś
+                    </svg>
+                    <svg
+                      class="w-4 h-4 text-gray-200 dark:text-gray-600"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 22 20"
+                    >
+                      <path
+                        d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                      />
+                    </svg>
+                    <span
+                      class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3"
+                      id="rating"
+                      >0</span
+                    >
+                  </div>
+                </div>
+                <a
+                  href="${app.DownloadLink}"
+                  class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
+                  >Download<i
+                    class="fa fa-download ml-2"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="w-4/5 pr-16">
+              <!-- About project-->
+              <div style="bg-yellow-400">
+                <h3
+                  class="flex dark:text-white pl-6 text-2xl pb-1 pr-10 font-bold justify-between"
+                >
+                  <!-- Project Tags-->
+                  <div>
+                    Description :
+                    <hr
+                      class="h-px w-42 border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 shimmering-hr"
+                    />
+                    <hr
+                      class="h-px w-42 border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 shimmering-hr"
+                    />
+                  </div>
+                  <div class="flex items-center space-x-4 pr-6 text-base">
+                    <img
+                      class="w-10 h-10 rounded-full"
+                      src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                      alt=""
+                    />
+                    <div class="font-medium dark:text-white">
+                      <div>Jese Leos</div>
+                      <div
+                        class="text-sm text-neutral-500 dark:text-neutral-400"
+                      >
+                        Joined in August 2014
+                      </div>
+                    </div>
+                  </div>
+                </h3>
+                <p
+                  class="font-medium dark:text-white p-4 pl-6 pr-10"
+                  style="max-height: 250px; overflow-y: scroll"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                  <br />
+                  <br />
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+              <div class="pl-6 pt-2">
+                <span
+                  id="badge-dismiss-dark"
+                  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-neutral-800 bg-neutral-100 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                >
+                  Dark
+                  <button
+                    type="button"
+                    class="inline-flex items-center p-1 ml-2 text-sm text-neutral-400 bg-transparent rounded-sm hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-neutral-300"
+                    data-dismiss-target="#badge-dismiss-dark"
+                    aria-label="Remove"
+                  >
+                    <svg
+                      class="w-2 h-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span class="sr-only">Remove badge</span>
+                  </button>
+                </span>
+                <span
+                  id="badge-dismiss-dark"
+                  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-neutral-800 bg-neutral-100 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                >
+                  Dark
+                  <button
+                    type="button"
+                    class="inline-flex items-center p-1 ml-2 text-sm text-neutral-400 bg-transparent rounded-sm hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-neutral-300"
+                    data-dismiss-target="#badge-dismiss-dark"
+                    aria-label="Remove"
+                  >
+                    <svg
+                      class="w-2 h-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span class="sr-only">Remove badge</span>
+                  </button>
+                </span>
+              </div>
+            </div>
           </div>
-          <div class="flex-1 bg-blue-300"></div>
+          <div class="w-full flex flex-col">
+            <div class="app-bar-title w-full pb-3">
+              <h2>Screenshots</h2>
+              <span class="separator"></span>
+            </div>
+            <div class="flex w-full overflow-x-scroll"></div>
+          </div>
+          <div class="h-3/6" id="screenshots"></div>
         </main>
       </section>
     </main>
@@ -126,6 +312,11 @@
       const back = () => {
         window.location.href = `./`;
       };
+      const loadData = () => {
+        let projectData = JSON.parse(getParameterByName("project"));
+        console.log(projectData);
+      };
+      $(document).ready(loadData);
     </script>
   </body>
 </html>

@@ -68,3 +68,17 @@
         min-width: max-content;
         max-height: max-content;
   }
+  .shimmering-hr {
+      animation: shimmer 2s linear infinite;
+  }
+  @keyframes shimmer {
+      0% {
+          background-position: -200% 0;
+      }
+
+      100% {
+          background-position: 200% 0;
+      }
+  }
+
+  

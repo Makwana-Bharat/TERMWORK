@@ -155,9 +155,11 @@
     <!--ready Document-->
     <script>
       //handle app click
-      const showApp = (id) => {
-        window.location.href = `View.html?id=${id}`;
-      };
+
+      function showApp(projectJSON) {
+        let Project = JSON.stringify(projectJSON);
+        window.location.href = `View.html?project=${Project}`;
+      }
 
       $(document).ready(() => {
         LoadApps();

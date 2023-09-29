@@ -16,7 +16,7 @@ const UserVizJSON = (originalArray) => {
   return Object.values(userProjects);
 };
 
-fetchData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
+fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
   .then((response) => {
     UserVizJSON(response.data).forEach((Data) => {
       $(".app-container").append(
@@ -32,17 +32,22 @@ fetchData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
         `
       );
       Data.Projects.forEach((project) => {
+        var projectJSON = JSON.stringify({
+          project: project,
+          UID: Data.UID,
+          Username: Data.Username,
+        });
         var app = `<div
-                  class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
-                onclick="showApp('${project.PID}')"
-                  >
-                  <img
-                    class="w-24 h-24 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700"
-                    src="${ApiEndPoint.Base}/Project/upload/${Data.UID}/${project.NAME}/Thumbnail.png"
-                    alt=""
-                  />
-                  <p class="text-center w-24 flex-wrap h-12 pt-2">${project.NAME}</p>
-                </div>`;
+              class="app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
+              onclick='showApp(${projectJSON})'
+              >
+            <img
+              class="w-24 h-24 border border-neutral-200 rounded-2xl shadow dark:bg-neutral-800 dark:border-neutral-700"
+              src="${ApiEndPoint.Base}/Project/upload/${Data.UID}/${project.NAME}/Thumbnail.png"
+              alt=""
+            />
+            <p class="text-center w-24 flex-wrap h-12 pt-2">${project.NAME}</p>
+          </div>`;
         $(`#${Data.UID}`).append(app);
       });
     });

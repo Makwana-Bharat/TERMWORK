@@ -1,4 +1,4 @@
-fetchData(`${ApiEndPoint.Base + ApiEndPoint.Project.MostViewed.Fetch}`)
+fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.MostViewed.Fetch}`)
   .then((mostViewedData) => {
     mostViewedData.data.forEach((app) => {
       var $appDiv = `
