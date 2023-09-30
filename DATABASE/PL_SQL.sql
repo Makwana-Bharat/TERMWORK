@@ -114,17 +114,23 @@ SELECT
     mv.Views AS Views,
     p.isVisible AS IsVisible,
     p.rating AS Rating,
-    pt.CID AS CID,
     pt.TID AS TID,
-    pm.Download AS DownloadLink
+    pm.Download AS DownloadLink,
+    pm.LiveLink,
+    pm.Repolink,
+    pm.Description,
+    pm.Screenshot,
+    c.Name AS 'Tag'
 FROM
     mostviewed mv
 INNER JOIN
     project p ON mv.PID = p.PID
 INNER JOIN
     user u ON p.UID = u.UID
-LEFT JOIN
-    project_tag pt ON p.PID = pt.PID
+JOIN
+    project_tag AS pt ON p.PID = pt.PID
+JOIN
+    category AS c ON pt.CID = c.CID
 INNER JOIN 
     project_meta pm ON pm.PID=p.PID;
 

@@ -71,7 +71,7 @@ let form = `
                 </label>
               </div>
               <div class="flex items-center pl-4 border border-neutral-200 rounded dark:border-neutral-700" style="width: 45%">
-                <input checked id="bordered-radio-2" type="radio" name="1" value="public" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" required />
+                <input checked id="bordered-radio-2" type="radio" name="visibility" value="1" class="w-4 h-4 text-blue-600 bg-neutral-100 border-neutral-300 dark:bg-neutral-700 dark:border-neutral-600" required />
                 <label for="bordered-radio-2" class="w-full py-4 ml-2 text-sm font-medium text-neutral-900 dark:text-neutral-300">
                   Public
                 </label>
@@ -129,7 +129,7 @@ let form = `
             <label for="tag" class="block mb-2 text-sm font-medium text-neutral-900 dark:text-white">
               Project Tags:
             </label>
-            <input type="tag" id="tag" name="tag" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="andoid,react..." required />
+            <input type="tag" id="tag" name="tag" class="bg-neutral-50 border border-neutral-300 text-neutral-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="seperate tags via ,  like:web,game" required/>
           </div>
 
           <!--Tags-->

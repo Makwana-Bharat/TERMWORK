@@ -63,7 +63,7 @@
         </footer>
       </nav>
       <!-- Main Section -->
-      <section class="w-full flex-1">
+      <section class="w-full flex-1 overfolw-y-scroll">
         <header class="flex justify-between w-11/12 px-4 py-2 fixed">
           <label
             for=""
@@ -82,6 +82,7 @@
               class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700"
             >
               <img
+                id="thumbnail"
                 class="rounded-lg h-full w-full"
                 src="https://flowbite.com/docs/images/examples/image-1@2x.jpg "
                 alt=""
@@ -169,6 +170,7 @@
                   </div>
                 </div>
                 <a
+                  id="download"
                   href="${app.DownloadLink}"
                   class="px-3 bg-blue-500 h-10 rounded-lg text-white flex justify-center items-center"
                   >Download<i
@@ -202,18 +204,19 @@
                       alt=""
                     />
                     <div class="font-medium dark:text-white">
-                      <div>Jese Leos</div>
+                      <div id="username">Jese Leos</div>
                       <div
                         class="text-sm text-neutral-500 dark:text-neutral-400"
                       >
-                        Joined in August 2014
+                        Full stack Developer
                       </div>
                     </div>
                   </div>
                 </h3>
                 <p
                   class="font-medium dark:text-white p-4 pl-6 pr-10"
-                  style="max-height: 250px; overflow-y: scroll"
+                  style="max-height: 214px; overflow-y: scroll"
+                  id="description"
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -235,76 +238,21 @@
                   mollit anim id est laborum.
                 </p>
               </div>
-              <div class="pl-6 pt-2">
-                <span
-                  id="badge-dismiss-dark"
-                  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-neutral-800 bg-neutral-100 rounded dark:bg-neutral-700 dark:text-neutral-300"
-                >
-                  Dark
-                  <button
-                    type="button"
-                    class="inline-flex items-center p-1 ml-2 text-sm text-neutral-400 bg-transparent rounded-sm hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-neutral-300"
-                    data-dismiss-target="#badge-dismiss-dark"
-                    aria-label="Remove"
-                  >
-                    <svg
-                      class="w-2 h-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 14"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                      />
-                    </svg>
-                    <span class="sr-only">Remove badge</span>
-                  </button>
-                </span>
-                <span
-                  id="badge-dismiss-dark"
-                  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-neutral-800 bg-neutral-100 rounded dark:bg-neutral-700 dark:text-neutral-300"
-                >
-                  Dark
-                  <button
-                    type="button"
-                    class="inline-flex items-center p-1 ml-2 text-sm text-neutral-400 bg-transparent rounded-sm hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-neutral-300"
-                    data-dismiss-target="#badge-dismiss-dark"
-                    aria-label="Remove"
-                  >
-                    <svg
-                      class="w-2 h-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 14"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                      />
-                    </svg>
-                    <span class="sr-only">Remove badge</span>
-                  </button>
-                </span>
-              </div>
+              <div class="pl-6 pt-2" id="tags"></div>
             </div>
           </div>
-          <div class="w-full flex flex-col">
+          <div class="w-full flex-1 flex flex-col">
             <div class="app-bar-title w-full pb-3">
               <h2>Screenshots</h2>
               <span class="separator"></span>
             </div>
             <div class="flex w-full overflow-x-scroll"></div>
           </div>
-          <div class="h-3/6" id="screenshots"></div>
+          <div
+            class="overflow-x-scroll flex"
+            id="screenshots"
+            style="height: 330px"
+          ></div>
         </main>
       </section>
     </main>
@@ -314,7 +262,61 @@
       };
       const loadData = () => {
         let projectData = JSON.parse(getParameterByName("project"));
-        console.log(projectData);
+        $("#thumbnail").attr(
+          "src",
+          `${ApiEndPoint.Base}Project/upload/${projectData.UID}/${projectData.project.NAME}/Banner.png`
+        );
+        $("#username").html(projectData.Username);
+        $("#appName").html(projectData.project.NAME);
+        $("#rating").html(projectData.project.rating);
+        $("#download").attr("href", projectData.project.Download);
+        $("#description").html(projectData.project.Description);
+        let tags = projectData.project.Tag.split(",");
+        tags.forEach((tag) => {
+          let newtag = `<span
+                  id="badge-dismiss-dark"
+                  class="inline-flex items-center px-2 py-1 mr-2 text-sm font-medium text-neutral-800 bg-neutral-100 rounded dark:bg-neutral-700 dark:text-neutral-300"
+                >
+                  ${tag}
+                  <button
+                    type="button"
+                    class="inline-flex items-center p-1 ml-2 text-sm text-neutral-400 bg-transparent rounded-sm hover:bg-neutral-200 hover:text-neutral-900 dark:hover:bg-neutral-600 dark:hover:text-neutral-300"
+                    data-dismiss-target="#badge-dismiss-dark"
+                    aria-label="Remove"
+                  >
+                    <svg
+                      class="w-2 h-2"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span class="sr-only">Remove badge</span>
+                  </button>
+                </span>
+                `;
+          $("#tags").append(newtag);
+        });
+        //screenshots
+        for (let i = 0; i < projectData.project.Screenshot; i++) {
+          let screenshot = `
+          <img
+              class="m-2 border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 cursor-pointer"
+              src="${ApiEndPoint.Base}Project/upload/${projectData.UID}/${projectData.project.NAME}/screenshots/screenshot${i}.png"
+              alt=""
+              style="width: 540px !important; height: 300px !important"
+            />
+          `;
+          $("#screenshots").append(screenshot);
+        }
       };
       $(document).ready(loadData);
     </script>

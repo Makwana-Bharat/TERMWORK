@@ -1,15 +1,32 @@
 fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.MostViewed.Fetch}`)
   .then((mostViewedData) => {
     mostViewedData.data.forEach((app) => {
+      const projectData = {
+        project: {
+          PID: app.PID,
+          NAME: app.ProjectName,
+          rating: app.Rating,
+          Download: app.DownloadLink,
+          LiveLink: app.LiveLink,
+          Repolink: app.Repolink,
+          Screenshot: app.Screenshot,
+          Tag: app.Tag,
+          Description: app.Description,
+        },
+        UID: app.UID,
+        Username: app.UserName,
+      };
       var $appDiv = `
                 <div
                       style="min-width: 460px"
                       class="TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
-                      onclick="showApp('${app.PID}')"
+                      onclick='showApp(${JSON.stringify(projectData)})'
                       >
                       <img
                         class="rounded-lg h-full w-full"
-                        src="${ApiEndPoint.Base}/Project/upload/${app.UID}/${app.ProjectName}/Banner.jpg"
+                        src="${ApiEndPoint.Base}/Project/upload/${app.UID}/${
+        app.ProjectName
+      }/Banner.png"
                         alt=""
                       />
                       <!--Bottom Section-->
@@ -27,7 +44,9 @@ fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.MostViewed.Fetch}`)
                         "
                       >
                         <div>
-                          <label for="" class="text-white text-lg">${app.ProjectName}</label>
+                          <label for="" class="text-white text-lg">${
+                            app.ProjectName
+                          }</label>
                           <div class="flex items-center mt-2 mb-5">
                             <svg
                               class="w-4 h-4 text-yellow-300 mr-1"
