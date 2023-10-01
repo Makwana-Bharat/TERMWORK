@@ -43,6 +43,7 @@
     <!-- Project -->
     <script src="./Projects/Forms/add.js"></script>
     <script src="./Projects/Handler/add.js"></script>
+    <script src="./Projects/Handler/project.js"></script>
   </head>
 
   <body class="h-screen w-screen bg-neutral-200 overflow-hidden">
@@ -98,16 +99,30 @@
             ></i>
           </div>
         </header>
-
-        <!-- Project Section-->
-        <main class="mt-16 mx-5">
-          <div class="w-full flex flex-col">
-            <div class="app-bar-title w-full pb-3">
-              <span class="separator"></span>
-            </div>
-            <div id="mostRated" class="flex w-full overflow-x-scroll"></div>
+        <!-- Search box-->
+        <div class="p-4 pt-16 flex justify-center">
+          <div
+            class="w-3/6 h-14 rounded-3xl pl-4"
+            style="
+              box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.6), inset 1px 1px 1px gray;
+            "
+          >
+            <input
+              type=""
+              id="search"
+              name="search"
+              value=""
+              placeholder="search.."
+              class="w-11/12 bg-transparent outline-0 h-full text-white text-lg"
+              spellcheck="flase"
+            />
+            <i
+              class="fa-solid fa-search text-slate-300 text-lg m-1 hover:text-white cursor-pointer"
+            ></i>
           </div>
-        </main>
+        </div>
+        <!-- Project Section-->
+        <main class="mt-10 mx-5" id="projects_Container"></main>
       </section>
 
       <!-- Add New Project -->
@@ -144,6 +159,11 @@
         } else {
           try {
             const user = JSON.parse(userCookie);
+            Projects(
+              ApiEndPoint.Base + ApiEndPoint.Project.Fetch,
+              user.UID,
+              user.Username
+            );
 
             if (user && user.Username) {
               $("#username").html(user.Username);

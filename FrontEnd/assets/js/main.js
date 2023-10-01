@@ -11,10 +11,10 @@ const fetchData = async (url) => {
   }
 };
 const HandleFilter = (tag) => {
-  if (tag === "all") $(".TopDownload").css("display", "block");
+  if (tag === "all") $(".project").css("display", "block");
   else {
-    $(".TopDownload").css("display", "none");
-    $(".TopDownload[data-tag*='" + tag + "']").css("display", "block");
+    $(".project").css("display", "none");
+    $(".project[data-tag*='" + tag + "']").css("display", "block");
   }
 };
 

@@ -170,3 +170,27 @@ GROUP BY
     p.PID
 ORDER BY 
     u.UID;
+
+CREATE OR REPLACE VIEW View_User_Project AS
+SELECT
+    `p`.`PID` AS `PID`,
+    `p`.`NAME` AS `ProjectName`,
+    `p`.`isVisible` AS `IsVisible`,
+    `p`.`rating` AS `Rating`,
+    `pt`.`TID` AS `TID`,
+    `pm`.`Download` AS `DownloadLink`,
+    `pm`.`LiveLink` AS `LiveLink`,
+    `pm`.`Repolink` AS `Repolink`,
+    `pm`.`Description` AS `Description`,
+    `pm`.`Screenshot` AS `Screenshot`,
+    `c`.`Name` AS `Tag`
+FROM
+    `live_store`.`project` `p`
+JOIN
+    `live_store`.`user` `u` ON (`p`.`UID` = `u`.`UID`)
+JOIN
+    `live_store`.`project_tag` `pt` ON (`p`.`PID` = `pt`.`PID`)
+JOIN
+    `live_store`.`category` `c` ON (`pt`.`CID` = `c`.`CID`)
+JOIN
+    `live_store`.`project_meta` `pm` ON (`pm`.`PID` = `p`.`PID`);

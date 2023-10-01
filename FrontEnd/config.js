@@ -19,10 +19,11 @@ const ApiEndPoint = {
     Add: "/Category/Fetch.php",
   },
   Project: {
-    FetchAll: "Project/FetchAll.php",
+    Fetch: "Project/userProject.php",
     Add: "Project/Add.php",
     Update: "Project/Update.php",
     Delete: "Project/Delete.php",
+    FetchAll: "Project/FetchAll.php",
     MostViewed: {
       Fetch: "Project/Mostview/Fetch.php",
       Add: "Project/Mostview/Add.php",

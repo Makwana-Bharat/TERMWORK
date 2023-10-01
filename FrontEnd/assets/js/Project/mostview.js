@@ -22,7 +22,7 @@ fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.MostViewed.Fetch}`)
                       style="min-width: 460px"
                       class="${
                         projectData.project.Tag
-                      } TopDownload overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
+                      } TopDownload project overflow-hidden bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 h-72"
                       onclick='showApp(${JSON.stringify(projectData)})'
                       >
                       <img

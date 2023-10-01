@@ -39,7 +39,7 @@ fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
         });
         var app = `<div
         data-tag="${project.Tag}"
-              class="TopDownload  app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
+              class="project app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer "
               onclick='showApp(${projectJSON})'
               >
             <img
@@ -47,7 +47,7 @@ fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
               src="${ApiEndPoint.Base}/Project/upload/${Data.UID}/${project.NAME}/Thumbnail.png"
               alt=""
             />
-            <p class="text-center w-24 flex-wrap h-12 pt-2 text-white">${project.NAME}</p>
+            <p class="text-center w-24 flex-wrap h-12 pt-2 text-white text-sm ">${project.NAME}</p>
           </div>`;
         $(`#${Data.UID}`).append(app);
       });
