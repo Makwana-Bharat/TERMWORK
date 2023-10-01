@@ -148,6 +148,10 @@
       </button>
     </main>
     <script>
+      function showApp(projectJSON) {
+        let Project = JSON.stringify(projectJSON);
+        window.location.href = `projectView.html?project=${Project}`;
+      }
       //Screen Switching
       const swapScreen = () => (window.location.href = "../");
 

@@ -38,7 +38,6 @@ const Projects = (url, uid, Username) => {
                 UID: uid,
                 Username: Username,
               });
-              console.log(project);
               var app = `<div
         data-tag="${project.Tag}"
               class="project app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer "
@@ -58,7 +57,23 @@ const Projects = (url, uid, Username) => {
       } else {
         if (response.message === "Record not found") {
           $("#projects_Container").append(
-            "<h3> There is No project available...!!<h3>"
+            `
+            <div id="toast-warning" class="absolute bottom-5 flex items-center w-full max-w-xs p-4 text-neutral-500 bg-white rounded-lg shadow dark:text-neutral-400 dark:bg-neutral-900" role="alert" style="left:45%">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+        </svg>
+        <span class="sr-only">Warning icon</span>
+    </div>
+    <div class="ml-3 text-sm font-normal">No Project Available.</div>
+    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-neutral-400 hover:text-neutral-900 rounded-lg  p-1.5 hover:bg-neutral-200 inline-flex items-center justify-center h-8 w-8 dark:text-neutral-500 dark:hover:text-white dark:bg-neutral-900 dark:hover:bg-neutral-800" data-dismiss-target="#toast-warning" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+        </svg>
+    </button>
+</div>
+            `
           );
         }
       }
