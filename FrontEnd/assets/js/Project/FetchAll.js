@@ -38,7 +38,8 @@ fetchProjectData(`${ApiEndPoint.Base + ApiEndPoint.Project.FetchAll}`)
           Username: Data.Username,
         });
         var app = `<div
-              class="TopDownload data-tag="${project.Tag}"  app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
+        data-tag="${project.Tag}"
+              class="TopDownload  app-container text-slate-100 p-2 mx-1 pt-3 flex flex-col justify-center items-center w-30 cursor-pointer"
               onclick='showApp(${projectJSON})'
               >
             <img
