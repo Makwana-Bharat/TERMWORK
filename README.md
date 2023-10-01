@@ -27,7 +27,8 @@ step2:
 ![image](https://github.com/Makwana-Bharat/TERMWORK/assets/126388812/d39a6584-bb63-4a67-86a5-a03bde68d775)
 
 step3:
-![image](https://github.com/Makwana-Bharat/TERMWORK/assets/126388812/33d30cb4-892e-4a98-88de-fd63aad6cc91)
+![Untitled](https://github.com/Makwana-Bharat/TERMWORK/assets/126388812/94909cb6-1df2-40f6-954f-32b191f93b9a)
+
 
 ## View Project
 ![image](https://github.com/Makwana-Bharat/TERMWORK/assets/126388812/998a37ef-e9c0-46b6-8bfb-53fdfbf4c0b2)
